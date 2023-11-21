@@ -9,34 +9,57 @@ import { AuthService } from '../AuthenticationService/AuthService';
 })
 export class ProfileComponent implements OnInit {
   username: string = '';
+  email: string = '';
+  newName: string = '';
+  newEmail: string = '';
+  isEditing: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
-    this.getUsername(); // Call the method to retrieve the username
+    this.getUserInfo();
   }
 
-  getUsername() {
-    this.authService.getCurrentUser().subscribe(user => {
-      if (user) {
-        // User is logged in, retrieve and display username
-        this.username = user.displayName || user.email || 'User';
-      } else {
-        // User is not logged in
-        // Handle this scenario if needed
+  getUserInfo() {
+    this.authService.getCurrentUser().subscribe(
+      user => {
+        if (user) {
+          this.username = user.displayName || user.email || 'User';
+          this.email = user.email || '';
+        } else {
+          // Handle not logged in
+        }
+      },
+      error => {
+        console.error('Error retrieving user info:', error);
+        // Handle error
       }
-    });
+    );
+  }
+
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
+    if (this.isEditing) {
+      this.newName = this.username;
+      this.newEmail = this.email;
+    }
+  }
+
+  saveChanges() {
+    // Perform save logic
+    this.username = this.newName;
+    this.email = this.newEmail;
+    this.isEditing = false; // Exit edit mode
   }
 
   logout() {
     this.authService.signOut()
       .then(() => {
-        // Redirect to the home page after successful logout
         this.router.navigate(['/HomePage']);
       })
       .catch(error => {
         console.error('Error logging out:', error);
-        // Handle logout errors
+        // Handle logout error
       });
   }
 }

@@ -1,9 +1,37 @@
-<!-- profile.component.html -->
-<div>
-    <!-- Profile content -->
-    <h2>Welcome {{ username }} to Booktopia</h2>
-    
-    <!-- Logout button -->
-    <button class="btn btn-primary" (click)="logout()">Logout</button>
+<div class="container">
+    <div class="card text-center mt-5" style="margin-bottom: 50px;">
+      <div class="card-header" style="background-color:#d8ccca;">
+        <span class="float-lg-end" (click)="logout()">Log-out</span>
+        <h2>Profile Page </h2>
+
+      </div>
+      <div class="card-body" style="background-color: #f2e6e3;">
+        <div class="user-info" *ngIf="username">
+          <img src="../../../assets/imges/test1.png" alt="Profile Photo" class="rounded-circle mb-3">
+          <h3>{{ username }}</h3>
+          <p>{{ email }}</p>
+          <button class="btn mb-3" style="background-color: #a6796e; color: whitesmoke;" (click)="toggleEdit()">Edit</button>
+       
+        </div>
+        <form class="edit-form mt-3" *ngIf="isEditing" (ngSubmit)="saveChanges()">
+          <div class="form-group">
+            <input class="form-control form-input" type="text" name="name" placeholder="Name" [(ngModel)]="newName">
+          </div>
+          <div class="form-group">
+            <input class="form-control form-input" type="email" name="email" placeholder="Email" [(ngModel)]="newEmail">
+          </div>
+          <div class="form-group">
+            <input class="form-control form-input" type="password" name="password" placeholder="New Password" [(ngModel)]="newPassword">
+          </div>
+          <div class="form-group">
+            <input class="form-control-file form-input" type="file" name="profile-photo" accept="image/*">
+          </div>
+          <button type="submit" class="btn  submit-btn" style="background-color: #a6796e; color: whitesmoke;" >Save</button>
+        </form>
+      </div>
+      <div class="card-footer text-muted" style="background-color:#d8ccca; padding-bottom: 30px;">
+ 
+      </div>
+    </div>
   </div>
   
