@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'lobester';
+    src: url('./lobster.ttf') format('truetype');
+    /* Add additional formats if your font supports them */
+ }
+ 
+ /* Apply the font to desired elements */
+ body {
+    font-family: 'lobster', sans-serif;
+ }
+ 

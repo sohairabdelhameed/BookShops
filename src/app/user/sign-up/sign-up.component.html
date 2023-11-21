@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-md-6 d-none d-md-block">
+                <!-- Your Brand Logo or Image -->
+                <img src="../../../assets/imges/reading.png" alt="Registration Image" class="img-fluid" style="width: 50%; margin-left: 50px;">
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4 shadow" style="background-color:#f6eeec ; color: #956d63;">
+                    <h2 style="font-family: 'lobester';" class="text-center mb-4 animate__animated animate__backInRight">Registration</h2>
+                    <form (ngSubmit)="signUp()">
+                        <div class="mb-3">
+                          <label for="username" class="form-label">Username</label>
+                          <input type="text" class="form-control" id="username" name="username" [(ngModel)]="username">
+                        </div>
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Email address</label>
+                          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
+                        </div>
+                        <div class="mb-3">
+                          <label for="password" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password">
+                        </div>
+                        <div class="mb-3">
+                          <label for="confirmPassword" class="form-label">Confirm Password</label>
+                          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword">
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+
+                        </div>
+                        <p class="text-danger">{{ errorMessage }}</p>
+                      </form>
+                      <p>Already have an account? <a (click)="goToSignIn()">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

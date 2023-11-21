@@ -1,0 +1,57 @@
+.book-swapping-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Adjust height as needed */
+    position: relative; /* Ensure position relative for absolute positioning of child elements */
+  }
+  
+  .book-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .book-image {
+    width: 25%; /* Adjust size as needed */
+    height: 25%; /* Adjust size as needed */
+    padding-top: 10%;
+    padding-left: 5%;
+  }
+  
+  .swap-arrow {
+    font-size: 50px;
+    color: #333; /* Adjust color as needed */
+    position: absolute;
+    top: 70%;
+    left: 26%;
+    animation: bounceText 1s infinite;
+  }
+  
+  
+  .feature-description {
+    max-width: 40%; /* Adjust width of the description */
+    padding-left: 5%;
+    padding-top:5%;
+  
+  }
+  
+  .feature-description h3 {
+    font-size: 25px;
+    margin-bottom: 5px;
+    animation: bounceText 1s ;
+  }
+  
+  .feature-description p {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+  
+  @keyframes bounceText {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  

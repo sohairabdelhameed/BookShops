@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Hide scrollbars */
+    background-color: #f0e3e0;
+}
+
+.section {
+    height: 100vh; /* Full viewport height */
+    display:flexbox; /* Initially hide all sections */
+}
+
+#section1 {
+   
+    padding-top: 2%;
+    height: 100vh; /* Full viewport height */
+    display:flexbox; /* Initially hide all sections */
+}
+
+#section2 {
+    background-color: #d8ccca;
+}
+
+
+.section {
+    overflow: hidden; /* Clear the floats */
+    padding-top: 10%;
+}
+
+.text {
+    float: left;
+    width: 50%; /* Adjust the width as needed */
+    margin-right: 20px; /* Add margin between text and image */
+    padding: 20px; /* Add padding to the text */
+}
+
+.text-image {
+    float: right;
+    width: 40%; /* Adjust the width as needed */
+    padding: 20px; /* Add padding to the image container */
+}
+
+.text-image img {
+    width: 100%;
+    display: block; /* Remove any extra spacing below the image */
+}
