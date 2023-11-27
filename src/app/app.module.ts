@@ -15,7 +15,13 @@ import {AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import{AngularFirestoreModule} from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { ProfileComponent } from './user/profile/profile.component';
+import { ProductComponent } from './product/product.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BookDetailComponent } from './product/details/book-detail/book-detail.component';
 
 
 
@@ -27,6 +33,9 @@ import { ProfileComponent } from './user/profile/profile.component';
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    BrowserAnimationsModule
 
 
    ],
@@ -41,6 +50,9 @@ import { ProfileComponent } from './user/profile/profile.component';
     Error404Component,
     SignupComponent,
     ProfileComponent,
+    ProductComponent,
+    DashboardComponent,
+    BookDetailComponent,
     
    
  

@@ -1,0 +1,38 @@
+.book-form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .book-form label,
+  .book-form input,
+  .book-form button {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .book-form input[type="file"] {
+    display: inline-block;
+  }
+  
+  .selected-image {
+    max-width: 300px;
+    margin-top: 10px;
+  }
+  
+  .add-book-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-book-btn:hover {
+    background-color: #0056b3;
+  }
+  

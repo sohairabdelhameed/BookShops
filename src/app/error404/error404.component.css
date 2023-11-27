@@ -1,0 +1,25 @@
+
+/* Custom styles */
+.logo {
+    width: 50%;
+    margin-bottom: 50px; /* Remove default margin */
+    margin-top: 60px; /* Remove default margin */
+    margin-left: 35%
+}
+
+.card {
+    margin-top: 1vh;
+    
+}
+
+.text-content {
+    padding: 60px;
+    margin-bottom: 10px; /* Remove default margin */
+  
+}
+.txt{
+    text-shadow: 4px 4px 4px #a46565;
+}
+p{
+    color:#a46565
+}

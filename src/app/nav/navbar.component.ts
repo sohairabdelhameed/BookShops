@@ -40,11 +40,5 @@ export class NavbarComponent implements OnInit {
       });
   }
   
-  goToSignIn() {
-    this.router.navigate(['/signIn']);
-  }
   
-  goToProfile() {
-    this.router.navigate(['/profile']);
-  }
 }

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+/* Apply the font-family to the paragraph */
+.txt{
+    font-family: 'Comic Neue', cursive;
+    color:#b9684d;
+    font-weight:normal;
+}
+
+
+h2{
+    color: #b15537;
+    font-family:'Lobster Two' , serif;
+    text-shadow: 4px 4px 4px #aaa;
+}
+
