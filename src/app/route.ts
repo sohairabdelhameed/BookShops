@@ -8,6 +8,7 @@ import { ProductComponent } from './product/product.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartComponent } from './cart/cart.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 
 export const appRoutes: Routes = [
   { path: 'HomePage', component: HomePageComponent },
@@ -17,6 +18,7 @@ export const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent },
   {path:'books',component:ProductComponent},
   {path:'dashboard',component:DashboardComponent},
+  {path:'userDash',component:UserDashboardComponent},
   {path:'cart',component:CartComponent},
   { path: 'books/:id', component: BookDetailsComponent },
   { path: 'error', component: Error404Component },

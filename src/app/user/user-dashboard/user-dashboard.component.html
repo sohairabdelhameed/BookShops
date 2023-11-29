@@ -1,1 +1,48 @@
-<p>user-dashboard works!</p>
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" style="margin-top: 15%;">
+        <h3 class="animate__animated animate__lightSpeedInLeft">Swap a book, share a story, and pass on the magic of reading.</h3>
+      
+        <p>
+            Books are more than words on a page; they are adventures waiting to be shared. 
+           <br>
+            Now you can swap your book with a friend or sell it here on Booktopia</p>
+      
+    </div>
+      <div class="col-md-6 animate__animated animate__lightSpeedInLeft"  style="margin-top: 5%;">
+        <form (ngSubmit)="onSubmit()">
+          <label>Title</label>
+          <input type="text" [(ngModel)]="bookData.title" name="title" required class="form-control">
+
+          <label>Author</label>
+          <input type="text" [(ngModel)]="bookData.author" name="author" required class="form-control">
+
+          <label class="select-label">How would you like to handle this book?</label>
+          <div class="select-wrapper">
+            <select [(ngModel)]="bookData.choice" name="choice" class="form-control" (change)="onOptionChange()">
+              <option value="sell">I want to sell this book</option>
+              <option value="swap">I want to swap this book</option>
+            </select>
+            <i class="fas fa-chevron-down select-icon"></i>
+          </div>
+          
+          
+
+          <label>Upload Image</label>
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" required class="form-control">
+          <div *ngIf="loadingImage" class="loader"></div>
+          <img *ngIf="bookData.photoUrl" [src]="bookData.photoUrl" alt="Selected Image Preview" class="selected-image">
+          <button type="submit" class="btn mt-3 add-book-btn">Add Book</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<app-footer></app-footer>
+</html>
