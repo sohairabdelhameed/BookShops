@@ -21,7 +21,11 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { ProductComponent } from './product/product.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BookDetailComponent } from './product/details/book-detail/book-detail.component';
+import { CartComponent } from './cart/cart.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
+import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+
+
 
 
 
@@ -35,7 +39,8 @@ import { BookDetailComponent } from './product/details/book-detail/book-detail.c
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+  
 
 
    ],
@@ -52,7 +57,11 @@ import { BookDetailComponent } from './product/details/book-detail/book-detail.c
     ProfileComponent,
     ProductComponent,
     DashboardComponent,
-    BookDetailComponent,
+    CartComponent,
+    BookDetailsComponent,
+    UserDashboardComponent,
+   
+
     
    
  

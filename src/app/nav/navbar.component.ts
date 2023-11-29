@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../user/AuthenticationService/AuthService';
-
+import { FirestoreService } from '../../firebaseServices/fireStore.service'; 
 @Component({
   selector: 'nav-bar',
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit {
+  cartItemCount: number = 0;
   username: string = '';
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService,private firestoreService: FirestoreService) {}
 
   ngOnInit() {
     this.getCurrentUser();
+
   }
 
   getCurrentUser() {
@@ -39,6 +41,6 @@ export class NavbarComponent implements OnInit {
         console.error('Error logging out:', error);
       });
   }
-  
+
   
 }

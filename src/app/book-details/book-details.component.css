@@ -1,0 +1,32 @@
+/* Add this CSS to your component's CSS file or the global styles */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two');
+
+.txt_title{
+
+font-family: 'Lobster Two', cursive;
+color: #644942;
+text-shadow: 4px 4px 4px #aaa;
+font-family: 'Lemonada';
+}
+
+.txt_desc{
+    font-family: 'Philosopher';
+    color:#74554d;
+    font-weight:550;
+
+}
+.txt_auth{
+    font-family: 'Philosopher';
+    font-weight: bolder;
+    font-size:medium;
+    color:#af867d
+}
+.price{
+    font-family: 'Comic Neue', cursive;
+    color:#644942;
+    font-weight:bolder;
+    font-size:large;
+}

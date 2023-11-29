@@ -1,5 +1,4 @@
-
-<div class="container">
+<div class="container" style="margin-bottom: 4%;">
   <div class="container text-center mt-5">
     <h2 class="mb-4">What do you like to read today?</h2>
     <p class="lead txt">
@@ -9,18 +8,21 @@
   </div>
   
   <div class="row row-cols-1 row-cols-md-3">
-    <div class="col mb-4" *ngFor="let book of books$ | async">
+    <div class="col mb-4" *ngFor="let book of books$ | async" [routerLink]="['/books', book.id]">
       <div class="card h-100" style="background-color: #f2e6e3;">
         <img [src]="book.photoUrl" class="card-img-top img-fluid" alt="{{ book.title }}" style="height: 300px; object-fit: contain; margin-top: 20px;">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ book.title }}</h5>
+         
+          <h5 class="card-title ">{{ book.title }}</h5>
           <p class="card-text">By {{ book.author }}</p>
-            <p class="card-text">{{ book.description }}</p>
+            <p class="card-text">{{ book.shortDescription }}</p>
             <p class="card-text">Price: ${{ book.price }}</p>
             <div class="mt-auto text-center">
            <!-- Your buttons with heart and cart icons -->
-<button class="btn btn-outline-light mx-2"><i class="fas fa-shopping-cart" style="color:#a84221"></i></button>
+<!-- Your HTML code using Font Awesome icons -->
+<button (click)="addToCart(book)"  class="btn btn-outline-light mx-2"><i class="fas fa-shopping-cart" style="color:#a84221"></i></button>
 <button class="btn btn-outline-light mx-2"><i class="far fa-heart" style="color:#a84221"></i></button>
+
 
           </div>
         </div>
@@ -28,3 +30,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

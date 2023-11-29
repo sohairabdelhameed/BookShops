@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +18,9 @@ export class BookService {
   getAllBooks() {
     return this.firestore.collection('books').valueChanges();
   }
+ 
+  getBookById(bookId: string): Observable<any> {
+    return this.firestore.doc(`books/${bookId}`).valueChanges();
+  }
+
 }

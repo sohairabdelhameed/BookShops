@@ -1,27 +1,33 @@
-<form (ngSubmit)="onSubmit()" class="book-form">
-  <label>Title</label>
-  <input type="text" [(ngModel)]="bookData.title" name="title" required>
+<body>
+  <form (ngSubmit)="onSubmit()" class="book-form" style="margin-top: 4%; ">
+    <label>Title</label>
+    <input type="text" [(ngModel)]="bookData.title" name="title" required>
+    
+    <label>Author</label>
+    <input type="text" [(ngModel)]="bookData.author" name="author" required>
+    
+    <label>Price</label>
+    <input type="number" [(ngModel)]="bookData.price" name="price" required>
+    
+    <label>Quantity</label>
+    <input type="number" [(ngModel)]="bookData.quantity" name="quantity" required>
+    
+    <label> Short Description</label>
+    <textarea [(ngModel)]="bookData.shortDescription" name="description" rows="4" required></textarea>
   
-  <label>Author</label>
-  <input type="text" [(ngModel)]="bookData.author" name="author" required>
-  
-  <label>Price</label>
-  <input type="number" [(ngModel)]="bookData.price" name="price" required>
-  
-  <label>Quantity</label>
-  <input type="number" [(ngModel)]="bookData.quantity" name="quantity" required>
-  
-  <label>Description</label>
-  <textarea [(ngModel)]="bookData.description" name="description" rows="4" required></textarea>
-  
-  <label>Upload Image</label>
-  <input type="file" (change)="onFileSelected($event)" accept="image/*" required>
-  <!-- This input will trigger the onFileSelected method when an image file is selected -->
-  
-  <!-- Display the selected image (optional) -->
-  <img *ngIf="bookData.imageUrl" [src]="bookData.imageUrl" alt="Selected Image" class="selected-image">
-  
-  <!-- Add other input fields for book details as needed -->
-  
-  <button type="submit" class="add-book-btn">Add Book</button>
-</form>
+    <label>Description</label>
+    <textarea [(ngModel)]="bookData.description" name="description" rows="4" required></textarea>
+    
+    <label>Upload Image</label>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" required>
+    <!-- This input will trigger the onFileSelected method when an image file is selected -->
+    
+    <!-- Display the selected image (optional) -->
+    <img *ngIf="bookData.imageUrl" [src]="bookData.imageUrl" alt="Selected Image" class="selected-image">
+    
+    <!-- Add other input fields for book details as needed -->
+    
+    <button type="submit" class="add-book-btn">Add Book</button>
+  </form>
+</body>
+

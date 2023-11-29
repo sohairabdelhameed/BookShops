@@ -6,6 +6,8 @@ import { SignupComponent } from './user/sign-up/sign-up.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ProductComponent } from './product/product.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CartComponent } from './cart/cart.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 export const appRoutes: Routes = [
   { path: 'HomePage', component: HomePageComponent },
@@ -15,6 +17,8 @@ export const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent },
   {path:'books',component:ProductComponent},
   {path:'dashboard',component:DashboardComponent},
+  {path:'cart',component:CartComponent},
+  { path: 'books/:id', component: BookDetailsComponent },
   { path: 'error', component: Error404Component },
   { path: '**', redirectTo: '/error', pathMatch: 'full' },
 ];

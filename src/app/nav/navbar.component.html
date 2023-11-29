@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg"  style="background-color:#c0b6b3">
+<nav class="navbar navbar-expand-lg "  style="background-color:#c0b6b3;">
     <div class="container-fluid ">
       <a class="navbar-brand" href="#">
         <img src="../assets/imges/test1.png" alt="Bootstrap" width="30" height="30">
@@ -13,6 +13,7 @@
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/books']" >Books</a>
           </li>
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
@@ -24,8 +25,14 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           
-       
+           
+          
+            
         </ul>
+        
+
+        
+        
         <div *ngIf="!username">
           <!-- Display Login link if the user is not logged in -->
           <ul class="navbar-nav m-1">
@@ -42,11 +49,19 @@
             </li>
           </ul>
         </div>
-        <form class="d-flex" role="search">
+        <ul class="navbar-nav m-2">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/cart']" ><i class="fas fa-shopping-cart" style="color:#a84221"></i>
+            </a>
+          </li>
+        </ul>
+       
+
+        <!-- <form class="d-flex" role="search">
        
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        </form> -->
       </div>
     </div>
     

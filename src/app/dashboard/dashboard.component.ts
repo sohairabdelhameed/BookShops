@@ -13,7 +13,7 @@ export class DashboardComponent {
   bookData: any = {
     title: '',
     author: '',
-    photoUrl: '' // Change to 'photoUrl' to be consistent
+    photoUrl: '' 
     // Add other book details as needed
   };
 
@@ -36,16 +36,16 @@ export class DashboardComponent {
   
   onSubmit() {
     this.bookService.addBook(this.bookData)
-      .then(() => {
-        console.log('Book added successfully');
-        this.bookData = {
-          title: '',
-          author: '',
-          photoUrl: '' // Change to 'photoUrl' to be consistent
-        };
-      })
-      .catch(error => {
-        console.error('Error adding book: ', error);
-      });
+    .then((docRef) => {
+      console.log('Book added successfully with ID:', docRef.id); // Log the ID
+      this.bookData = {
+        title: '',
+        author: '',
+        photoUrl: '' // Change to 'photoUrl' to be consistent
+      };
+    })
+    .catch(error => {
+      console.error('Error adding book: ', error);
+    });
   }
 }

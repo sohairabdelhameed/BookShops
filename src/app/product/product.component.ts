@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../../firebaseServices/fireStore.service';
+import {FirestoreCartService} from '../../firebaseServices/firbaseCart.service'
+import { FirestoreService } from 'src/firebaseServices/fireStore.service';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -10,9 +12,9 @@ import { AngularFireStorage } from 'angularfire2/storage';
 })
 export class ProductComponent implements OnInit {
   books$: Observable<any[]>;
+ 
 
   constructor(private firestoreService: FirestoreService,private storage: AngularFireStorage) { }
-
   ngOnInit(): void {
     this.books$ = this.firestoreService.getBooks();
   }
@@ -33,4 +35,11 @@ export class ProductComponent implements OnInit {
       });
     });
   }
+  addToCart(book: any) {
+    this.firestoreService.addToCart(book);
+    // Optionally, you can display a message indicating successful addition to the cart
+  }
+  
+  
+  
 }

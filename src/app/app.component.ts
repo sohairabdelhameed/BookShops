@@ -3,6 +3,7 @@ declare var $: any;
 
 @Component({
   selector: 'app-root',
+
   template: `
     <!DOCTYPE html>
     <html lang="en">
@@ -14,12 +15,15 @@ declare var $: any;
     <body>
         <!-- Your body content goes here -->
         <nav-bar></nav-bar>
+      
         <router-outlet></router-outlet>
-   
+     
     </body>
-    <app-footer></app-footer>
+
     </html>
+  
   `
+  
 })
 export class AppComponent {
   title = 'BookShops';
