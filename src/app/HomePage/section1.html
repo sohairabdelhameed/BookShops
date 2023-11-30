@@ -1,71 +1,32 @@
-
-    <div>
+<div>
     <h4 class="text-center">What do you like to read today?</h4>
     <div id="carouselExampleDark" class="carousel">
-
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-                <div class="container">
-                    <div class="row" style="padding-top:5%">
-                        <div class="col-md-6">
-                            <img src="../../assets/imges/714W8OWD+iL.jpg" class="d-block w-50 mx-auto" alt="Book Image">
-                        </div>
-                        <div class="col-md-6 d-flex align-items-center">
-                            <aside style="padding: 50px; color: #a12369;">
-                                <h4>It Ends With Us</h4>
-                                <p>Dive into the compelling world of 'It Ends with Us' by Colleen Hoover, a poignant novel exploring love, resilience, and tough choices. Follow Lily Bloom's journey through love and heartbreak, as secrets unravel, challenging readers to reconsider notions of right and wrong. Hoover weaves an emotionally charged tale, delving into the intricacies of human emotions for a thought-provoking reading experience.</p>
-                            </aside>
-                        </div>
-                    </div>
-                </div>
-            </div>
-      
-            <div class="carousel-item" data-bs-interval="10000">
-                <div class="container">
-                    <div class="row" style="padding-top:10%">
-                        <div class="col-md-6 order-md-2">
-                            <img src="../../assets/imges/3419-medium.jpg" class="d-block w-50 mx-auto" alt="Book Image">
-                        </div>
-                        <div class="col-md-6 d-flex align-items-center">
-                            <aside style="padding: 50px; color:#1b7363">
-                                <h4>The Great Gatsby</h4>
-                                <p>"Discover the timeless allure of 'The Great Gatsby' by F. Scott Fitzgerald, a classic that transcends generations. Immerse yourself in the glamorous yet elusive world of Jay Gatsby, Nick Carraway, and Daisy Buchanan. As the Jazz Age unfolds, explore themes of love, wealth, and the American Dream. This literary masterpiece awaits you in our curated collection — a must-read that captures the essence of a bygone era, where dreams and decadence collide."</p>
-                            </aside>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="10000">
-              <div class="container">
-                  <div class="row"  style="padding-top:6%">
-                      <div class="col-md-6">
-                          <img src="../../assets/imges/9786232161368_The-5-Am-Club.jpg" class="d-block w-50 mx-auto" alt="Book Image">
-                      </div>
-                      <div class="col-md-6 d-flex align-items-center">
-                          <aside style="padding: 50px; color:#ee5023;">
-                              <h4>It Ends With Us</h4>
-                              <p>"Dive into 'The 5 AM Club' by Robin Sharma, a transformative guide to success through morning rituals. Join characters on a journey of self-discovery and learn the power of early routines for personal and professional excellence. Find this inspiring title in our curated collection, unlocking the secrets to a fulfilling life."</p>
-                          </aside>
-                      </div>
-                  </div>
+      <div class="carousel-inner">
+        <div class="carousel-item" *ngFor="let book of books$ | async; let i = index" [class.active]="i === 0">
+          <div class="container">
+            <div class="row" style="margin-top: 3%;">
+              <div class="col-md-6">
+                <img [src]="book.photoUrl" class="d-block w-50 mx-auto" alt="Book Image">
               </div>
+              <div class="col-md-6 d-flex align-items-center">
+                <aside style="padding: 50px; color: #856158;">
+                  <h4>{{ book.shortDescription }}</h4>
+                  <!-- Display other book information as needed -->
+                </aside>
+              </div>
+            </div>
           </div>
-      
-            <!-- Repeat the above structure for other carousel items -->
-      
         </div>
-      
-        <button class="carousel-control-prev  " type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
       </div>
-      
-</div>
   
-  
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
   

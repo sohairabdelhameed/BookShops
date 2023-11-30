@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow:visible;
+    height: 100%;
    
     
 }
@@ -32,17 +32,35 @@ body {
 }
 
 /* Styles for text and image within sections */
-.text {
-    width: 50%;
-    padding: 20px;
-}
 
-.text-image {
-    width: 40%;
-    padding: 20px;
-}
 
 .text-image img {
-    width: 100%;
-    display: block;
+    width: 80%; 
+    display:block;
+    transform:translate(30px , 30px);
+   
 }
+.author-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; 
+
+}
+
+.text-content {
+  flex: 1;
+  padding: 20px; /* Adjust padding as needed */
+  margin-left: 10%;
+  margin-top: 5%;
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 10%;
+  margin-top: 5%;
+
+}
+
+

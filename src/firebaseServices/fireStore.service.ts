@@ -38,6 +38,18 @@ export class FirestoreService {
   getBookById(bookId: string): Observable<any> {
     return this.afs.collection('books').doc(bookId).valueChanges();
   }
+  getRandomBooks(limit: number): Observable<any[]> {
+    return this.books.pipe(
+      map(booksArray => {
+        const randomBooks = [];
+        for (let i = 0; i < limit; i++) {
+          const randomIndex = Math.floor(Math.random() * booksArray.length);
+          randomBooks.push(booksArray[randomIndex]);
+        }
+        return randomBooks;
+      })
+    );
+  }
    // Add book to cart
    addToCart(book: any) {
     this.cartItems.push(book);

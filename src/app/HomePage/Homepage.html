@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Your Page Title</title>
+    <title>Booktopia</title>
 </head>
 <body>
   <div>
@@ -10,20 +10,21 @@
     </section>
 
     <section id="section2" class="section">
-        <div class=" text m-lg-5 p-lg-5 " >
-          <h2>Mahmoud Darwish (1941–2008)</h2>
-          <p>Widely regarded as the national poet of Palestine, 
-            Mahmoud Darwish was a prolific and influential literary figure. His poetry, deeply rooted in the Palestinian experience, eloquently expressed the struggles, dreams, and resilience of his people. Darwish's work transcends political boundaries, touching on universal themes of love, loss, and the human condition. As a poet, essayist, and cultural icon, he played a crucial role in shaping the narrative of Palestinian identity.
-          </p>
-          <p> Famous Line:
-            In one of Mahmoud Darwish's renowned lines, 
-            he poignantly captures the essence of hope and longing: "We have on this earth what makes life worth living." which in arabic means :"لدينا على هذه الأرض ما يستحقّ الحياة"
-            This powerful sentiment encapsulates Darwish's ability to infuse profound emotions into his words, resonating with readers around the world.</p>
+      <div class="author-container" *ngFor="let author of author$ | async;">
+        <div class="text-content">
+          <h2>{{ author.name }} {{ author.date }}</h2>
+          <p>{{ author.about }}</p>
+          <p>{{ author.famousLine }}</p>
         </div>
-        <div class="text-image pattern-diagonal-lines-sm">
-          <img style="width: 90%; transform:translate(30px , 30px);" src="../assets/imges/Mahmoud_Darwish.jpg" alt="Mahmoud Darwish">
+        <div class="image-content">
+          <div class="text-image pattern-diagonal-lines-sm"  >
+            <img [src]="author.photoUrl" alt="{{ author.name }}" class="author-image">
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
+    
+    
     <section id="section3" class="section">
       <section-two></section-two>
     </section>
