@@ -1,0 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
+body,html {
+    background-color:#f0e3e0;
+    margin: 0;
+    padding: 0;
+  
+  
+
+}
+h2{
+  color: #74554d;
+  font-family: Philosopher;
+
+}

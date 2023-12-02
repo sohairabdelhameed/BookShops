@@ -1,17 +1,18 @@
 <div>
-    <h4 class="text-center">What do you like to read today?</h4>
+    <h3 class="text-center animate__animated animate__backInUp">What Tale Awaits Your Discovery?</h3>
     <div id="carouselExampleDark" class="carousel">
       <div class="carousel-inner">
         <div class="carousel-item" *ngFor="let book of books$ | async; let i = index" [class.active]="i === 0">
           <div class="container">
             <div class="row" style="margin-top: 3%;">
               <div class="col-md-6">
-                <img [src]="book.photoUrl" class="d-block w-50 mx-auto" alt="Book Image">
+                <img [src]="book.photoUrl"  class="d-block w-50 mx-auto animate__animated animate__bounceIn" alt="Book Image" >
               </div>
-              <div class="col-md-6 d-flex align-items-center">
+              <div class="col-md-6 d-flex align-items-center pointer"[routerLink]="['/books', book.id]">
                 <aside style="padding: 50px; color: #856158;">
-                  <h4>{{ book.shortDescription }}</h4>
-                  <!-- Display other book information as needed -->
+                  <h4 class="animate__animated animate__fadeIn">{{book.title}}</h4>
+                  <h5 class="animate__animated animate__fadeIn">{{ book.shortDescription }}</h5>
+             
                 </aside>
               </div>
             </div>

@@ -1,8 +1,8 @@
-/* Reset styles for the body */
+@import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
 body {
     margin: 0;
     padding: 0;
-    height: 100%;
+   
    
     
 }
@@ -33,7 +33,19 @@ body {
 
 /* Styles for text and image within sections */
 
+.h2txt {
+  font-family:Philosopher;
+  color:#42302c;
+  font-weight: 600;
+  text-shadow: 5px 5px #dbc9c5;
 
+}
+.ptxt{
+  font-family:Philosopher;
+  color:#74554d;
+  font-size: 18px;
+  font-weight:550;
+}
 .text-image img {
     width: 80%; 
     display:block;

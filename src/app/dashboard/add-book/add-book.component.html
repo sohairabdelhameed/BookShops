@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <div class="container-fluid">
+ 
+    <div class="row">
+      <div class="col-md-2">
+        <app-sidenav></app-sidenav>
+      </div>
+      <div class="col-md-8" style="margin-top: 3%;">
+        <form (ngSubmit)="onSubmit()" class="form">
+          <div class="row">
+            <h2 class="text-center">Add new book</h2>
+            <div class="col-md-6">
+              <label>Title</label>
+              <input type="text" [(ngModel)]="bookData.title" name="title" required>
+              
+              <label>Author</label>
+              <input type="text" [(ngModel)]="bookData.author" name="author" required>
+              
+              <label>Price</label>
+              <input type="number" [(ngModel)]="bookData.price" name="price" required>
+              
+              <label>Quantity</label>
+              <input type="number" [(ngModel)]="bookData.quantity" name="quantity" required>
+            </div>
+            <div class="col-md-5">
+              <label>Short Description</label>
+              <textarea [(ngModel)]="bookData.shortDescription" name="shortDescription" rows="4" required></textarea>
+              
+              <label>Description</label>
+              <textarea [(ngModel)]="bookData.description" name="description" rows="4" required></textarea>
+              
+              <label>Upload Image</label>
+              <input type="file" (change)="onFileSelected($event)" accept="image/*" required class="form-control">
+              <div *ngIf="loadingImage" class="loader"></div>
+              <img *ngIf="bookData.photoUrl" [src]="bookData.photoUrl" alt="Selected Image Preview" class="selected-image">
+              <button type="submit" class="btn mt-3 add-book-btn">Add Book</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<app-footer></app-footer>
+</html>

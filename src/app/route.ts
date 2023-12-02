@@ -9,6 +9,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartComponent } from './cart/cart.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { AddBookComponent } from './dashboard/add-book/add-book.component';
+import { ManageUsersComponent } from './dashboard/manage-users/manage-users.component';
+import { UsersProductComponent } from './users-product/users-product.component';
 
 export const appRoutes: Routes = [
   { path: 'HomePage', component: HomePageComponent },
@@ -21,6 +24,9 @@ export const appRoutes: Routes = [
   {path:'userDash',component:UserDashboardComponent},
   {path:'cart',component:CartComponent},
   { path: 'books/:id', component: BookDetailsComponent },
+  {path:'addBook',component:AddBookComponent},
+  { path: 'usersBook', component:UsersProductComponent},
+  {path:'manageBooks', component:ManageUsersComponent },
   { path: 'error', component: Error404Component },
   { path: '**', redirectTo: '/error', pathMatch: 'full' },
 ];

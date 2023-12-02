@@ -12,13 +12,13 @@
     <section id="section2" class="section">
       <div class="author-container" *ngFor="let author of author$ | async;">
         <div class="text-content">
-          <h2>{{ author.name }} {{ author.date }}</h2>
-          <p>{{ author.about }}</p>
-          <p>{{ author.famousLine }}</p>
+          <h2 class="h2txt animate__animated animate__backInLeft">{{ author.name }} {{ author.date }}</h2>
+          <p class="ptxt animate__animated animate__fadeInRight">{{ author.about }}</p>
+          <p class="ptxt animate__animated animate__fadeInRight">{{ author.famousLine }}</p>
         </div>
         <div class="image-content">
           <div class="text-image pattern-diagonal-lines-sm"  >
-            <img [src]="author.photoUrl" alt="{{ author.name }}" class="author-image">
+            <img [src]="author.photoUrl" alt="{{ author.name }}" class="author-image animate__animated animate__fadeInLeftBig">
           </div>
         </div>
       </div>

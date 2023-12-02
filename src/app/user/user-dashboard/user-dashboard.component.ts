@@ -13,8 +13,8 @@ export class UserDashboardComponent implements OnInit {
   bookData: any = {
     title: '',
     author: '',
-    choice: '', // Add choice property
-    price: null, // Initialize price property
+    choice: '',
+    price: null, 
     photoUrl:''
   };
   loadingImage: boolean = false;

@@ -31,7 +31,7 @@ export class FirestoreAuthorService {
     return this.authors.pipe(
       map(authorsArray => {
         const randomIndex = Math.floor(Math.random() * authorsArray.length);
-        return [authorsArray[randomIndex]]; // Return an array with a single random author
+        return [authorsArray[randomIndex]]; 
       })
     );
   }

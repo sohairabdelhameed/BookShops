@@ -16,20 +16,36 @@
           <button class="btn mb-3" style="background-color: #a6796e; color: whitesmoke;" (click)="toggleEdit()">Edit</button>
        
         </div>
-        <form class="edit-form mt-3" *ngIf="isEditing" (ngSubmit)="saveChanges()">
+        <form class="edit-form mt-3" *ngIf="isEditing"  (ngSubmit)="saveChanges()">
           <div class="form-group">
             <input class="form-control form-input" type="text" name="name" placeholder="Name" [(ngModel)]="newName">
           </div>
           <div class="form-group">
-            <input class="form-control form-input" type="email" name="email" placeholder="Email" [(ngModel)]="newEmail">
+        
+            <input class="form-control form-input" type="email" name="email" placeholder="Email" [(ngModel)]="newEmail" readonly>
           </div>
+          
           <div class="form-group">
             <input class="form-control form-input" type="password" name="password" placeholder="New Password" [(ngModel)]="newPassword">
           </div>
           <div class="form-group">
+            <input class="form-control form-input" type="number" name="age" placeholder="age" [(ngModel)]="newAge">
+          </div>
+          <div class="form-group">
+            <label>Gender:</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="male" name="gender" value="male" [(ngModel)]="selectedGender">
+              <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="female" name="gender" value="female" [(ngModel)]="selectedGender">
+              <label class="form-check-label" for="female">Female</label>
+            </div>
+          </div>
+          <div class="form-group">
             <input class="form-control-file form-input" type="file" name="profile-photo" accept="image/*">
           </div>
-          <button type="submit" class="btn  submit-btn" style="background-color: #a6796e; color: whitesmoke;" >Save</button>
+          <button type="submit" class="btn submit-btn" style="background-color: #a6796e; color: whitesmoke;">Save</button>
         </form>
       </div>
       <div class="card-footer text-muted" style="background-color:#d8ccca; padding-bottom: 30px;">

@@ -24,6 +24,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartComponent } from './cart/cart.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { SidenavComponent } from './dashboard/sidenav/sidenav.component';
+import { AddBookComponent } from './dashboard/add-book/add-book.component';
+import { ManageUsersComponent } from './dashboard/manage-users/manage-users.component';
+import { UsersProductComponent } from './users-product/users-product.component';
 
 
 
@@ -60,6 +64,10 @@ import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.com
     CartComponent,
     BookDetailsComponent,
     UserDashboardComponent,
+    SidenavComponent,
+    AddBookComponent,
+    ManageUsersComponent,
+    UsersProductComponent,
    
 
     
