@@ -3,7 +3,8 @@ import {FirestoreCartService} from '../../../firebaseServices/firbaseCart.servic
 import { UserBookService } from '../../../firebaseServices/userBook.Service';
 import { Observable, of } from 'rxjs';
 import { AngularFireStorage } from 'angularfire2/storage';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 @Component({
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
@@ -13,7 +14,7 @@ export class ManageUsersComponent implements OnInit {
   
     books: Observable<any[]>;
   
-    constructor(private userBookService: UserBookService,private storage: AngularFireStorage) { }
+    constructor(private dialog: MatDialog , private userBookService: UserBookService,private storage: AngularFireStorage) { }
   
     ngOnInit() {
       this.books = this.userBookService.getAllBooks();
@@ -36,17 +37,21 @@ export class ManageUsersComponent implements OnInit {
       });
     }
     deleteProduct(bookId: string) {
-      // Call the deleteProduct method from your Firestore service
-      this.userBookService.deleteProduct(bookId)
-        .then(() => {
-          console.log('Product deleted successfully');
-          // Perform any additional actions upon successful deletion if needed
-        })
-        .catch((error) => {
-          console.error('Error deleting product:', error);
-          // Handle errors if product deletion fails
-        });
+      const dialogRef = this.dialog.open(DialogComponent, {
+        width: '250px',
+        data: { message: 'Are you sure you want to delete this Book?' }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.userBookService.deleteProduct(bookId)
+            .then(() => {
+              dialogRef.close('Book deleted successfully'); // Close the dialog with a success message
+            })
+            .catch((error) => {
+              dialogRef.close('Error deleting product: ' + error); // Close the dialog with an error message
+            });
+        }
+      });
     }
-    
-
 }

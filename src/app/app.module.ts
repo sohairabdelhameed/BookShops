@@ -28,7 +28,9 @@ import { SidenavComponent } from './dashboard/sidenav/sidenav.component';
 import { AddBookComponent } from './dashboard/add-book/add-book.component';
 import { ManageUsersComponent } from './dashboard/manage-users/manage-users.component';
 import { UsersProductComponent } from './users-product/users-product.component';
-
+import { DialogComponent } from './dashboard/dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SucessDialogComponent } from './dashboard/sucess-dialog/sucess-dialog.component';
 
 
 
@@ -44,7 +46,7 @@ import { UsersProductComponent } from './users-product/users-product.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     BrowserAnimationsModule,
-  
+    MatDialogModule
 
 
    ],
@@ -68,6 +70,8 @@ import { UsersProductComponent } from './users-product/users-product.component';
     AddBookComponent,
     ManageUsersComponent,
     UsersProductComponent,
+    DialogComponent,
+    SucessDialogComponent,
    
 
     

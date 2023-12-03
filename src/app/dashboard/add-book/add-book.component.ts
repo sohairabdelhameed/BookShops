@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { BookService } from '../../../firebaseServices/bookServices';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
-
+import { MatDialog } from '@angular/material/dialog';
+import { SucessDialogComponent } from '../sucess-dialog/sucess-dialog.component';
 
 @Component({
   selector: 'app-add-book',
@@ -17,7 +18,7 @@ export class AddBookComponent{
     // Add other book details as needed
   };
   loadingImage: boolean = false;
-  constructor(private bookService: BookService, private storage: AngularFireStorage) { }
+  constructor( private dialog: MatDialog ,private bookService: BookService, private storage: AngularFireStorage) { }
   onImageLoad() {
     this.loadingImage = false; // Hide the loader when the image is loaded
   }
@@ -38,17 +39,25 @@ export class AddBookComponent{
   }
   
   onSubmit() {
-    this.bookService.addBook(this.bookData)
-    .then((docRef) => {
-      console.log('Book added successfully with ID:', docRef.id); // Log the ID
-      this.bookData = {
-        title: '',
-        author: '',
-        photoUrl: '' // Change to 'photoUrl' to be consistent
-      };
-    })
-    .catch(error => {
-      console.error('Error adding book: ', error);
+    const dialogRef = this.dialog.open(SucessDialogComponent, {
+      width: '250px',
+      data: { message: 'Book Added Successfully' }
     });
+
+    this.bookService.addBook(this.bookData)
+      .then((docRef) => {
+        console.log('Book added successfully with ID:', docRef.id); // Log the ID
+        this.bookData = {
+          title: '',
+          author: '',
+          photoUrl: ''
+        };
+
+        dialogRef.close(); // Close the dialog when book is added successfully
+      })
+      .catch(error => {
+        console.error('Error adding book: ', error);
+        dialogRef.close(); // Close the dialog in case of an error
+      });
   }
 }
