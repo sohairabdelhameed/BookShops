@@ -21,6 +21,13 @@ body {
     border-color: #644942;
 }
 
+/* CSS for hovering effect on buttons */
+.btn i:hover {
+    background-color: #b8948b; /* Change the background color on hover */
+    border-color: #644942; /* Change the border color on hover */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Add a smooth transition effect */
+  }
+  
 /* Custom style for remember me checkbox */
 .form-check-input {
     margin-top: 2px;

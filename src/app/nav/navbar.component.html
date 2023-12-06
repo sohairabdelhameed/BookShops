@@ -39,11 +39,15 @@
           <!-- Display username if the user is logged in -->
           <ul class="navbar-nav m-1">
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/profile']">{{username }}</a>
+              <a class="nav-link" [routerLink]="['/profile']">{{ username }}</a>
             </li>
           </ul>
         </div>
         <ul class="navbar-nav m-2">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/fav']" ><i class="fas fa-heart" style="color:#a84221"></i>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/cart']" ><i class="fas fa-shopping-cart" style="color:#a84221"></i>
             </a>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../AuthenticationService/AuthService';
+import { editAuth } from "../AuthenticationService/edit";
+import { AngularFireStorage } from 'angularfire2/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -10,29 +13,63 @@ import { AuthService } from '../AuthenticationService/AuthService';
 export class ProfileComponent implements OnInit {
   username: string = '';
   email: string = '';
-
-
   newName: string = '';
   newEmail: string = '';
+  newGender:string='';
+  newAge:string='';
+ 
   isEditing: boolean = false;
-id:any;
-  constructor(private router: Router, private authService: AuthService) {}
+  userId: string = ''; // Store the user ID
+  selectedGender: string = '';
+  userData: any = {
+    photoUrl:''
+  };
+  loadingImage: boolean = false;
+  newphotoUrl: any;
+  constructor(private storage: AngularFireStorage , private router: Router, private authService: AuthService, private edit: editAuth) {}
 
   ngOnInit() {
     this.getUserInfo();
-    
+    this.getUserInfos();
   }
-
-  getUserInfo() {
- 
+  getUserInfos() {
     this.authService.getCurrentUser().subscribe(
       user => {
         if (user) {
-          this.username = user.displayName || user.email || 'User';
-          this.email = user.email || '';
-         
+          this.userId = user.uid || '';
+          this.getUserDataFromFirestore(this.userId);
         } else {
-          // Handle not logged in
+          // Handle if user is not logged in
+        }
+      },
+      error => {
+        console.error('Error retrieving user info:', error);
+        // Handle error
+      }
+    );
+  }
+
+  getUserDataFromFirestore(userId: string) {
+    this.authService.getUserInfo(userId).subscribe(
+      userData => {
+        this.userData = userData;
+      },
+      error => {
+        console.error('Error retrieving user data from Firestore:', error);
+        // Handle error
+      }
+    );
+  }
+  getUserInfo() {
+    this.authService.getCurrentUser().subscribe(
+      user => {
+        if (user) {
+          this.username = this.username || user.email || 'User';
+          this.email = user.email || '';
+          this.userId = user.uid || ''; 
+          
+        } else {
+          
         }
       },
       error => {
@@ -49,41 +86,90 @@ id:any;
       this.newEmail = this.email;
     }
   }
+  onImageLoad() {
+    this.loadingImage = false; // Hide the loader when the image is loaded
+  }
+onFileSelected(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+    const filePath = `books/${file.name}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    this.loadingImage = true; // Show loader
 
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe(
+          url => {
+            this.userData.photoUrl = url; // Set 'photoUrl' in userData
+            this.newphotoUrl = url; // Set 'newphotoUrl' to use for updating
+            this.loadingImage = false; // Hide loader
+          },
+          error => {
+            console.error('Error getting download URL:', error);
+            this.loadingImage = false; // Hide loader in case of error
+            // Handle error here (e.g., display error message)
+          }
+        );
+      })
+    ).subscribe(
+      // Handle additional errors or progress if needed
+    );
+  }
+}
+  onGenderChange() {}
+ 
+  
   saveChanges() {
-    this.id = this.authService.getCurrentUserID();
-    const userId = this.id; 
-    if (userId) {
-      const newData = {
-        username: this.newName,
-        email: this.newEmail,
-        // Add other fields you want to update
-      };
+    const updatedUserData: any = {};
   
-      this.authService.updateUserData(userId, newData)
+    if (this.newName !== this.username) {
+      updatedUserData.username = this.newName;
+   
+    }
+  
+    if (this.newEmail !== this.email) {
+      updatedUserData.email = this.newEmail;
+    }
+  
+    if (this.selectedGender !== '') {
+      updatedUserData.gender = this.selectedGender;
+    }
+  
+    if (this.newAge !== '') {
+      updatedUserData.age = this.newAge;
+    }
+  
+    if (this.newphotoUrl !== undefined) {
+      updatedUserData.photoUrl = this.newphotoUrl;
+    }
+  
+    if (Object.keys(updatedUserData).length === 0) {
+      console.log('No changes to save');
+      return; // No changes to save
+    }
+  
+    if (this.userId) {
+      this.edit.updateUser(this.userId, updatedUserData)
         .then(() => {
-          // Update successful
-          // You might want to update the displayed user info here
-          this.username = this.newName;
-          this.email = this.newEmail;
-  
-          this.toggleEdit(); // Close the editing mode
+          console.log('User data updated successfully');
+          // Update the displayed name after successful update
+          this.toggleEdit(); // Close editing mode if needed
+          this.userData.username = updatedUserData.username || this.userData.username;
+ 
         })
-        .catch(error => {
+        .catch((error) => {
           console.error('Error updating user data:', error);
-          // Log specific details about the error
-          console.log('Error code:', error.code);
-          console.log('Error message:', error.message);
-          // Handle error
         });
     }
   }
   
-   
+
   
   
   logout() {
-    this.authService.signOut()
+    this.authService
+      .signOut()
       .then(() => {
         this.router.navigate(['/HomePage']);
       })

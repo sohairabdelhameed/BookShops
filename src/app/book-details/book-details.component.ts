@@ -17,7 +17,7 @@ export class BookDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const bookId = params.get('id'); // Assuming 'id' is the parameter for book ID in the route
+      const bookId = params.get('id'); 
       if (bookId) {
         this.firestoreService.getBookById(bookId).subscribe(book => {
           this.book = book;

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>User's Favorite Books</title>
+</head>
+<body>
+ <div class="container">
+    <h1>User's Favorite Book Details</h1>
+    <div *ngIf="bookDetails.length > 0">
+      <ul class="list-group">
+        <li *ngFor="let book of bookDetails" class="list-group-item custom-list-item">
+          <div class="row">
+            <div class="col-md-3">
+              <img [src]="book.details?.photoUrl" alt="Book Image" class="img-fluid book-image" [routerLink]="['/books', book.id]">
+            </div>
+            <div class="col-md-6">
+              <h5>
+                <strong>Title:</strong> {{ book.details?.title || 'Title Not Available' }}
+              </h5>
+              <p>{{ book.details?.shortDescription }}</p>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-danger btn-sm float-right" (click)="removeFromFavorites(book.id)">Remove</button>
+            </div>
+          </div>
+          <hr>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="bookDetails.length === 0" class="text-center">
+      <p>No favorite books available.</p>
+    </div>
+ </div>
+</body>
+<app-footer></app-footer>
+</html>

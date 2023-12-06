@@ -12,6 +12,8 @@ import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.com
 import { AddBookComponent } from './dashboard/add-book/add-book.component';
 import { ManageUsersComponent } from './dashboard/manage-users/manage-users.component';
 import { UsersProductComponent } from './users-product/users-product.component';
+import { FavoriteComponent } from './favorite/favorite.component';
+
 
 export const appRoutes: Routes = [
   { path: 'HomePage', component: HomePageComponent },
@@ -27,6 +29,8 @@ export const appRoutes: Routes = [
   {path:'addBook',component:AddBookComponent},
   { path: 'usersBook', component:UsersProductComponent},
   {path:'manageBooks', component:ManageUsersComponent },
+  {path:'fav',component:FavoriteComponent},
+ 
   { path: 'error', component: Error404Component },
   { path: '**', redirectTo: '/error', pathMatch: 'full' },
 ];

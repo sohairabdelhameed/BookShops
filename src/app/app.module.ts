@@ -31,6 +31,8 @@ import { UsersProductComponent } from './users-product/users-product.component';
 import { DialogComponent } from './dashboard/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SucessDialogComponent } from './dashboard/sucess-dialog/sucess-dialog.component';
+import { FavoriteComponent } from './favorite/favorite.component';
+
 
 
 
@@ -72,7 +74,8 @@ import { SucessDialogComponent } from './dashboard/sucess-dialog/sucess-dialog.c
     UsersProductComponent,
     DialogComponent,
     SucessDialogComponent,
-   
+    FavoriteComponent,
+
 
     
    
