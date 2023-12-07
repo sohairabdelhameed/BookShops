@@ -1,48 +1,83 @@
-/* Styles for cart items */
+/* CSS for Cart Page */
+/* General Styles */
+body{
+  background-color:#f0e3e0 ;
+}
+.cart-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0e3e0;
+}
+
 .cart-item {
-    display: flex;
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.item-preview {
+  flex: 0 0 120px;
+  margin-right: 20px;
+}
+
+.item-img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.quantity-btn {
+  background: #d3bcb7;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.quantity {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.remove-btn {
+  background: #956d63;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.total-price {
+  margin-top: 20px;
+  text-align: right;
+}
+
+/* Font Awesome Icons */
+.fas {
+  font-family: 'Font Awesome 5 Free';
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 4%;
+    text-align: center;
   }
-  
+
   .item-preview {
-    margin-right: 15px;
+    margin-bottom: 10px;
   }
-  
-  .item-img {
-    width: 50px; /* Adjust the width of the image as needed */
-    height: 50px; /* Adjust the height of the image as needed */
-    object-fit: cover; /* Maintain aspect ratio */
-    border-radius: 3px;
-  }
-  
-  .item-details {
-    flex-grow: 1;
-  }
-  
-  /* Style for remove button */
-  .remove-btn {
-    background-color: #ff0000;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .remove-btn:hover {
-    background-color: #cc0000;
-  }
-  
-  /* Style for total price */
-  .total-price {
-    margin-top: 20px;
-    text-align: right;
-    font-weight: bold;
-  }
-  
+}

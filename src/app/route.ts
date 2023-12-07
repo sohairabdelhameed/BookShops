@@ -13,6 +13,8 @@ import { AddBookComponent } from './dashboard/add-book/add-book.component';
 import { ManageUsersComponent } from './dashboard/manage-users/manage-users.component';
 import { UsersProductComponent } from './users-product/users-product.component';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { AddressComponent } from './address/address.component';
+import { OrderComponent } from './order/order.component';
 
 
 export const appRoutes: Routes = [
@@ -30,7 +32,8 @@ export const appRoutes: Routes = [
   { path: 'usersBook', component:UsersProductComponent},
   {path:'manageBooks', component:ManageUsersComponent },
   {path:'fav',component:FavoriteComponent},
- 
+  {path:'address',component:AddressComponent},
+  {path:'order',component:OrderComponent},
   { path: 'error', component: Error404Component },
   { path: '**', redirectTo: '/error', pathMatch: 'full' },
 ];

@@ -1,20 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="cart-page">
+      <div *ngFor="let item of cartItems; let i = index" class="cart-item container">
+        <div class="item-preview">
+          <img [src]="item.bookDetails?.photoUrl" alt="Item Preview" class="item-img">
+        </div>
+        <div class="item-details">
+          <h4>{{ item.bookDetails?.title }}</h4>
+          <p>Price: ${{ item.bookDetails?.price }}</p>
+          <div class="quantity-controls">
+            <button class="quantity-btn decrease-btn" (click)="decreaseQuantity(item)">
+              <i class="far fa-minus-square"></i>
+            </button>
+            <span class="quantity">{{ item.quantity }}</span>
+            <button class="quantity-btn increase-btn" (click)="increaseQuantity(item)">
+              <i class="far fa-plus-square"></i>
+            </button>
+          </div>
+          <button class="remove-btn" (click)="removeFromCart(item.id)"><i class="fas fa-solid fa-trash" style="color: #d3bcb7"></i> Remove</button>
+        </div>
+      </div>
+    
+      <!-- Display total price -->
+      <div class="total-price">
+        <p>Total Price: ${{ totalPrice }}</p>
+        <button (click)="checkout()" [routerLink]="['/address']">continue</button>
+      </div>
+    </div>
 
-<!-- Display cart items -->
-<body>
-<div class="cart-item container" *ngFor="let item of cartItems; let i = index">
-    <div class="item-preview">
-      <img [src]="item.photoUrl" alt="Item Preview" class="item-img">
-    </div>
-    <div class="item-details">
-      <h4>{{ item.title }}</h4>
-      <p>Price: ${{ item.price }}</p>
-    </div>
-    <button class="remove-btn" (click)="removeFromCart(i)">Remove</button>
-  </div>
-  
-  <!-- Display total price -->
-  <div class="total-price">
-    <p>Total Price: ${{ totalPrice }}</p>
-  </div>
-</body>
+  </body>
+</html>
+
 <app-footer></app-footer>

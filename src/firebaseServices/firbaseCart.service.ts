@@ -1,44 +1,141 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, combineLatest, forkJoin, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/user/AuthenticationService/AuthService';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class FirestoreCartService {
+export class FirestoreCartService  {
   private cartCollection: any;
   private userId: string | null;
 
-  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
+  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth , ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userId = user.uid;
+        console.log(this.userId)
         this.cartCollection = this.afs.collection(`users/${this.userId}/cart`);
       } else {
         this.userId = null;
         this.cartCollection = null;
       }
     });
-  }
+    
 
-  addToCart(book: any, quantity: number) {
-    if (!book || !book.id || book.id.trim() === '') {
-      console.error('Invalid book or book ID');
-      return;
-    }
-  
+  }
+ 
+  addToCart(bookId: string) {
     if (this.userId) {
-      const { id, ...rest } = book;
-      this.cartCollection.doc(id).set({ ...rest, quantity });
+      const isBookIdValid = typeof bookId === 'string' && bookId.trim() !== '';
+  
+      if (isBookIdValid) {
+        const bookRef = this.afs.collection('books').doc(bookId);
+        bookRef.get().toPromise()
+          .then((bookSnapshot: any) => {
+            if (bookSnapshot.exists) {
+              const bookData = bookSnapshot.data();
+              const availableQuantity = bookData.quantity || 0;
+  
+              this.cartCollection.doc(bookId).get().toPromise()
+                .then((cartSnapshot: any) => {
+                  const currentQuantityInCart = cartSnapshot.exists ? cartSnapshot.data().quantity || 0 : 0;
+                  const requestedQuantity = currentQuantityInCart + 1;
+  
+                  if (requestedQuantity <= availableQuantity) {
+                    // If the book already exists in the cart, update its quantity
+                    if (cartSnapshot.exists) {
+                      this.cartCollection.doc(bookId).update({ quantity: requestedQuantity })
+                        .then(() => {
+                          console.log('Item quantity updated in cart successfully!');
+                        })
+                        .catch((error: any) => {
+                          console.error('Error updating item quantity in cart:', error);
+                          // Handle error
+                        });
+                    } else {
+                      // Otherwise, add a new cart item
+                      const cartItem = {
+                        id: bookId,
+                        quantity: 1 // Initial quantity when adding to cart
+                      };
+                      this.cartCollection.doc(bookId).set(cartItem)
+                        .then(() => {
+                          console.log('Item added to cart successfully!');
+                        })
+                        .catch((error: any) => {
+                          console.error('Error adding item to cart:', error);
+                          // Handle error
+                        });
+                    }
+                  } else {
+                    console.error('Requested quantity exceeds available quantity.');
+                    // Handle the case where the requested quantity exceeds available quantity
+                  }
+                })
+                .catch((error: any) => {
+                  console.error('Error checking cart:', error);
+                  // Handle error
+                });
+            } else {
+              console.error('Book not found in the bookstore.');
+              // Handle the case where the book is not found in the bookstore
+            }
+          })
+          .catch((error: any) => {
+            console.error('Error fetching book details:', error);
+            // Handle error
+          });
+      } else {
+        console.error('Invalid book ID.' + bookId);
+        // Handle the case where the book ID is invalid
+      }
     } else {
       console.error('User not authenticated');
       // Handle the case where the user is not authenticated
     }
   }
   
+  
+  updateCartItemQuantity(userId: string, itemId: string, newQuantity: number): Promise<void> {
+    const cartItemRef = this.afs.collection(`users/${userId}/cart`).doc(itemId);
 
+    return cartItemRef.update({ quantity: newQuantity })
+      .then(() => {
+        console.log('Item quantity updated in cart successfully!');
+      })
+      .catch((error: any) => {
+        console.error('Error updating item quantity in cart:', error);
+        // Handle error
+        throw error; // Rethrow the error for handling in the component if needed
+      });
+  }
+  increaseCartItemQuantity(userId: string, bookId: string) {
+    if (userId) {
+      const cartItemRef = this.afs.collection(`users/${userId}/cart`).doc(bookId);
+
+      return cartItemRef.get().toPromise().then((doc) => {
+        if (doc.exists) {
+          const currentQuantity = doc.data()?.quantity || 0;
+          return cartItemRef.update({ quantity: currentQuantity + 1 });
+        } else {
+          console.error('Item not found in the cart.');
+          // Handle the case where the item is not found in the cart
+          return Promise.reject('Item not found in the cart.');
+        }
+      }).catch((error) => {
+        console.error('Error increasing item quantity in cart:', error);
+        return Promise.reject(error);
+      });
+    } else {
+      console.error('User not authenticated');
+      // Handle the case where the user is not authenticated
+      return Promise.reject('User not authenticated');
+    }
+  }
   removeFromCart(bookId: string) {
     if (this.userId) {
       this.cartCollection.doc(bookId).delete();
@@ -60,7 +157,48 @@ export class FirestoreCartService {
       });
     }
   }
-
+  checkoutCart(cartItems: any[]): Promise<string | null> {
+    return new Promise((resolve, reject) => {
+      if (this.userId) {
+        const orderId = this.afs.createId();
+        const orderRef = this.afs.collection('orders').doc(orderId);
+    
+        const totalPrice = this.calculateTotalPrice(cartItems); // Calculate total price
+    
+        const orderData = {
+          userId: this.userId,
+          items: cartItems.map(item => ({
+            id: item.id || '',
+            quantity: item.quantity || 0,
+            title: item.title || ''
+          })),
+          totalPrice: totalPrice // Add the total price to the order data
+        };
+  
+        orderRef.set(orderData)
+          .then(() => {
+            resolve(orderId); // Resolve the orderId when the order is successfully created
+          })
+          .catch(error => {
+            console.error('Error creating order:', error);
+            reject(null); // Reject with null if there's an error creating the order
+          });
+      } else {
+        console.error('User not authenticated');
+        reject(null); // Reject with null if the user is not authenticated
+      }
+    });
+  }
+  
+  calculateTotalPrice(cartItems: any[]): number {
+    let totalPrice = 0;
+    for (const item of cartItems) {
+      totalPrice += (item.bookDetails?.price || 0) * (item.quantity || 0);
+    }
+    return totalPrice; 
+  }
+  
+  
   getCartItemCount(): Observable<number> {
     if (this.userId) {
       return this.cartCollection.valueChanges().pipe(

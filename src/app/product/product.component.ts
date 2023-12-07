@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from 'src/firebaseServices/fireStore.service';
+import { FirestoreCartService } from '../../firebaseServices/firbaseCart.service'; // Import the FirestoreCartService
 import { Observable, of } from 'rxjs';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AuthService } from '../user/AuthenticationService/AuthService';
 import * as firebase from 'firebase';
 import { catchError } from 'rxjs/operators';
+import { FirestoreService } from 'src/firebaseServices/fireStore.service';
 
 @Component({
   selector: 'app-product',
@@ -16,11 +17,12 @@ export class ProductComponent implements OnInit {
   userFavorites: string[] = []; // To store user's favorite book IDs
   userId: string | null = null; // To store the current user's ID
 
-  constructor(private firestoreService: FirestoreService, private storage: AngularFireStorage , private auth:AuthService) { }
+  constructor(private fireStore: FirestoreService , private firestoreCartService: FirestoreCartService, private storage: AngularFireStorage, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.loadBooks();
     this.fetchUserFavorites();
+    this.auth.getCurrentUserID();
   }
 
   getBookPhotoUrl(bookId: string): Observable<string | null> {
@@ -30,14 +32,14 @@ export class ProductComponent implements OnInit {
         // Handle the error when the file is not found
         console.error('Error fetching photo URL:', error);
         // Return a URL to a placeholder image or null
-        return of('path_to_placeholder_image'); 
+        return of('path_to_placeholder_image');
       })
     );
   }
 
   loadBooks() {
     // Retrieve books from Firestore
-    this.books$ = this.firestoreService.getBooks();
+    this.books$ = this.fireStore.getBooks();
 
     // Iterate through the books to get the photo URLs from Firebase Storage
     this.books$.subscribe((books) => {
@@ -48,11 +50,13 @@ export class ProductComponent implements OnInit {
       });
     });
   }
-
-  addToCart(book: any) {
-    this.firestoreService.addToCart(book);
-    // Optionally, you can display a message indicating successful addition to the cart
+  addToCartClicked(bookId: string) {
+    console.log('Book ID:', bookId);
+    this.firestoreCartService.addToCart(bookId);
   }
+  
+  
+
   fetchUserFavorites() {
     this.userId = this.auth.getCurrentUserID();
     if (this.userId) {
@@ -61,9 +65,11 @@ export class ProductComponent implements OnInit {
       });
     }
   }
+
   isBookInFavorites(bookId: string): boolean {
     return this.userFavorites.includes(bookId);
   }
+
   addToFavorites(bookId: string) {
     const userId = this.auth.getCurrentUserID(); // Get current user ID
     if (userId) {
@@ -78,5 +84,4 @@ export class ProductComponent implements OnInit {
       console.error('User not logged in.');
     }
   }
-
 }

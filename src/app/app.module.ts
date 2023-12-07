@@ -32,6 +32,8 @@ import { DialogComponent } from './dashboard/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SucessDialogComponent } from './dashboard/sucess-dialog/sucess-dialog.component';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { AddressComponent } from './address/address.component';
+import { OrderComponent } from './order/order.component';
 
 
 
@@ -75,6 +77,8 @@ import { FavoriteComponent } from './favorite/favorite.component';
     DialogComponent,
     SucessDialogComponent,
     FavoriteComponent,
+    AddressComponent,
+    OrderComponent,
 
 
     

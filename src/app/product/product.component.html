@@ -19,7 +19,7 @@
             <p class="card-text">Price: ${{ book.price }}</p>
             <div class="mt-auto text-center">
        
-<button (click)="addToCart(book)"  class="btn btn-outline-light mx-2"><i class="fas fa-shopping-cart" style="color:#a84221"></i></button>
+<button  (click)="addToCartClicked(book.id)"  class="btn btn-outline-light mx-2"><i class="fas fa-shopping-cart" style="color:#a84221"></i></button>
 <button (click)="addToFavorites(book.id)" class="btn btn-outline-light mx-2">
   <i class="fa-heart" [ngClass]="{ 'fas': isBookInFavorites(book.id), 'far': !isBookInFavorites(book.id) }" style="color: #a84221;"></i>
 </button>
