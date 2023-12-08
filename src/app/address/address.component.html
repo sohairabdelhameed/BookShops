@@ -34,7 +34,7 @@
         <label for="country" class="form-label">Country:</label>
         <input type="text" class="form-control" id="country" name="country" [(ngModel)]="country" required>
       </div>
-      <button class="btn btn-primary">Checkout</button>
+      <button class="btn btn-primary" [routerLink]="['/order']">Checkout</button>
     </form>
   </div>
   

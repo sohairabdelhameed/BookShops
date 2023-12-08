@@ -34,7 +34,10 @@ export class AuthService {
     const user = this.afAuth.auth.currentUser;
     return user ? user.uid : null;
   }
-  
+  getUserAddress(userId: string): Observable<any> {
+    return this.firestore.collection('users').doc(userId).valueChanges();
+  }
+ 
   getCurrentUsername(): string | null {
     const user = this.afAuth.auth.currentUser;
     return user ? user.displayName : null;

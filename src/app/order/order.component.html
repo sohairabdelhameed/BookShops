@@ -1,1 +1,67 @@
-<p>order works!</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div *ngIf="userAddress" class="user-address">
+            <h2>User Address Details</h2>
+            <p>Full Name: {{ userAddress?.fullName }}</p>
+            <p>Address Line 1: {{ userAddress?.addressLine1 }}</p>
+            <p>Address Line 2: {{ userAddress?.addressLine2 }}</p>
+            <p>City: {{ userAddress?.city }}</p>
+            <p>State: {{ userAddress?.state }}</p>
+            <p>Zip Code: {{ userAddress?.zipCode }}</p>
+            <p>Country: {{ userAddress?.country }}</p>
+            <p>Phone: {{ userAddress?.phone }}</p>
+        </div>
+        <div *ngIf="userOrders.length > 0" class="user-orders">
+            <h2>User Orders</h2>
+            <ul>
+                <li *ngFor="let order of userOrders">
+                    <p>Product ID: {{ order.productId }}</p>
+                    <p>Quantity: {{ order.quantity }}</p>
+                    <p>Total Price: {{ order.totalPrice }}</p>
+                    <p>Title: {{ order.title }}</p>
+                    <p>Author: {{ order.author }}</p>
+                    <p>Price: {{ order.price }}</p>
+                    <img [src]="order.photo" />
+                </li>
+            </ul>
+        </div>
+        <div class="payment-options" *ngIf="showPaymentOptions">
+          <h5>Select Payment Method:</h5>
+          <button class="payment-button" (click)="payOnDelivery()" (click)="handlePaymentSuccess(paymentMethod, orderId)">Pay on Delivery</button>
+          <button class="payment-button" (click)="payWithCreditCard()">Pay with Credit Card</button>
+        </div>
+        <!-- Credit Card Form (Initially Hidden) -->
+        <div *ngIf="showCreditCardForm" class="credit-card-form">
+          <form>
+            <div class="form-group">
+              <label for="cardNumber">Card Number</label>
+              <input type="text" id="cardNumber" [(ngModel)]="creditCard.cardNumber" name="cardNumber" placeholder="Enter Card Number" maxlength="16" class="form-control">
+            </div>
+        
+            <div class="form-group">
+              <label for="expiryDate">Expiry Date</label>
+              <input type="text" id="expiryDate" [(ngModel)]="creditCard.expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="5" class="form-control">
+            </div>
+        
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" [(ngModel)]="creditCard.cvv" name="cvv" placeholder="Enter CVV" maxlength="3" class="form-control">
+              <button (click)="handlePaymentSuccess(paymentMethod, orderId)">Complete Payment</button>
+            </div>
+          </form>
+        </div>
+    </div>
+
+
+    </body>
+</html>
+

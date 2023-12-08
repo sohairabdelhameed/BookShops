@@ -161,28 +161,43 @@ export class FirestoreCartService  {
     return new Promise((resolve, reject) => {
       if (this.userId) {
         const orderId = this.afs.createId();
-        const orderRef = this.afs.collection('orders').doc(orderId);
-    
-        const totalPrice = this.calculateTotalPrice(cartItems); // Calculate total price
-    
-        const orderData = {
-          userId: this.userId,
-          items: cartItems.map(item => ({
-            id: item.id || '',
-            quantity: item.quantity || 0,
-            title: item.title || ''
-          })),
-          totalPrice: totalPrice // Add the total price to the order data
-        };
+        const orderRef = this.afs.collection(`users/${this.userId}/orders`).doc(orderId); // Save under users/{userId}/orders
   
-        orderRef.set(orderData)
-          .then(() => {
-            resolve(orderId); // Resolve the orderId when the order is successfully created
-          })
-          .catch(error => {
-            console.error('Error creating order:', error);
-            reject(null); // Reject with null if there's an error creating the order
-          });
+        // Fetch details for each product in the cartItems array
+        const fetchProductDetails = cartItems.map(item => {
+          return this.afs.collection('books').doc(item.id).valueChanges().pipe(
+            map((productDetails: any) => ({
+              id: item.id || '',
+              quantity: item.quantity || 0,
+              title: productDetails.title || '',
+              author:productDetails.author ||'',
+              price: productDetails.price || 0,
+              photo:productDetails.photoUrl || '',
+
+          
+            }))
+          );
+        });
+  
+        // Combine all the fetched product details into a single Observable
+        combineLatest(fetchProductDetails).subscribe((productDetailsArray: any[]) => {
+          const totalPrice = this.calculateTotalPrice(cartItems); // Calculate total price
+  
+          const orderData = {
+            userId: this.userId,
+            items: productDetailsArray, // Use the fetched product details
+            totalPrice: totalPrice // Add the total price to the order data
+          };
+  
+          orderRef.set(orderData)
+            .then(() => {
+              resolve(orderId); // Resolve the orderId when the order is successfully created
+            })
+            .catch(error => {
+              console.error('Error creating order:', error);
+              reject(null); // Reject with null if there's an error creating the order
+            });
+        });
       } else {
         console.error('User not authenticated');
         reject(null); // Reject with null if the user is not authenticated
@@ -190,6 +205,8 @@ export class FirestoreCartService  {
     });
   }
   
+
+ 
   calculateTotalPrice(cartItems: any[]): number {
     let totalPrice = 0;
     for (const item of cartItems) {
@@ -216,6 +233,26 @@ export class FirestoreCartService  {
         observer.next(0); // Return 0 if user is not authenticated
         observer.complete();
       });
+    }
+  }
+  clearCart(): Promise<void> {
+    if (this.userId) {
+      // Get a reference to the user's cart collection in Firestore
+      const cartRef = this.afs.collection(`users/${this.userId}/cart`);
+
+      // Use batched writes to delete all documents in the cart collection
+      const batch = this.afs.firestore.batch();
+      return cartRef.ref.get().then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+        });
+
+        // Commit the batched write to delete all cart items
+        return batch.commit();
+      });
+    } else {
+      console.error('User not authenticated');
+      return Promise.reject('User not authenticated');
     }
   }
 }

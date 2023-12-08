@@ -34,8 +34,7 @@ import { SucessDialogComponent } from './dashboard/sucess-dialog/sucess-dialog.c
 import { FavoriteComponent } from './favorite/favorite.component';
 import { AddressComponent } from './address/address.component';
 import { OrderComponent } from './order/order.component';
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -50,7 +49,8 @@ import { OrderComponent } from './order/order.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
 
 
    ],
