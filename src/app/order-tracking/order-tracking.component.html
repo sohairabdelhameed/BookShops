@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Tracking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    .order-group {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 10px;
+    }
+    .order-details {
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+      background-color: #f9f9f9;
+    }
+    .order-details p {
+      margin: 5px 0;
+    }
+    .order-details span {
+      font-weight: bold;
+    }
+    .pending-status {
+      color: orange;
+    }
+    .delivered-status {
+      color: green;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+    .order-details:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Order Tracking</h2>
+    <div *ngFor="let ordersGroup of groupedOrders" class="order-group">
+      <h3>Order ID: {{ ordersGroup[0]?.id }}</h3>
+      <p>Total Price: {{ ordersGroup[0]?.totalPrice }}</p>
+      <p>Expected Date : {{ ordersGroup[0]?.date}}</p>
+      <p>Status: <span class="status-indicator" [ngClass]="{ 'pending-status': ordersGroup[0]?.status === 'Pending', 'delivered-status': ordersGroup[0]?.status === 'Delivered' }">{{ ordersGroup[0]?.status }}</span></p>
+      <p>Payment Method: {{ ordersGroup[0]?.paymentMethod }}</p>
+      <div *ngFor="let order of ordersGroup" class="order-details">
+        <p>Title: {{ order.title }}</p>
+       
+        <!-- Display other order details as needed -->
+      </div>
+      <hr>
+    </div>
+  </div>
+</body>
+</html>

@@ -15,6 +15,7 @@ import { UsersProductComponent } from './users-product/users-product.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { AddressComponent } from './address/address.component';
 import { OrderComponent } from './order/order.component';
+import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 
 
 export const appRoutes: Routes = [
@@ -34,6 +35,7 @@ export const appRoutes: Routes = [
   {path:'fav',component:FavoriteComponent},
   {path:'address',component:AddressComponent},
   {path:'order',component:OrderComponent},
+  {path:'track',component:OrderTrackingComponent},
   { path: 'error', component: Error404Component },
   { path: '**', redirectTo: '/error', pathMatch: 'full' },
 ];

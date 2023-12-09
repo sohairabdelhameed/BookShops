@@ -1,71 +1,103 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    padding: 30px;
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+html , body{
+  background-color: #f0e3e0
 }
+ .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+ box-shadow: 2px 2px 2px 2px;
+ margin-bottom: 2%;
 
-.container {
-    background-color: #fff;
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+} 
 
 h2 {
-    margin-top: 0;
-    color: #333;
-}
-
-.user-address, .user-orders {
-    margin-bottom: 30px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    background-color: #f8f9fa;
-    padding: 20px;
-    margin-bottom: 10px;
-}
-
-img {
-    max-width: 100px;
-    height: auto;
-}
-.form-group {
-    margin-bottom: 15px;
-  }
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #956d63;
   
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
   
-  .form-control {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  .payment-button {
-    display: inline-flex;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+}
+
+p {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color:#762e17;
+}
+.user-address, .user-orders, .payment-options, .credit-card-form, .thank-you-message {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
   
-  .payment-button:hover {
-    background-color: #0056b3;
+}
+/* User Address Section */
+.user-address {
+
+ font-weight: 500;
+ font-family: 'Nunito';
+ 
+
+}
+  
+  .user-orders img {
+     width: 100px;
+     height: 100px;
+     object-fit: cover;
   }
+/* User Orders Section */
+
+.list-group-item {
+  margin-bottom: 20px;
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 5px;
+  
+}
+
+.order-details img {
+  max-width: 100px;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+/* Payment Options */
+.payment-options {
+  margin-top: 20px;
+}
+
+.payment-options button {
+  margin-right: 10px;
+}
+
+/* Credit Card Form */
+.credit-card-form {
+  margin-top: 20px;
+}
+
+.credit-card-form label {
+  font-weight: bold;
+}
+
+.credit-card-form input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.credit-card-form button {
+  margin-top: 10px;
+}
+
+/* Thank You Message */
+.thank-you-message {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.thank-you-message button {
+  margin-top: 10px;
+}

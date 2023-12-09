@@ -130,5 +130,6 @@ export class CartComponent implements OnInit {
 
   checkout() {
     this.firestoreCartService.checkoutCart(this.cartItems);
+ this.firestoreCartService.clearCart();
   }
 }

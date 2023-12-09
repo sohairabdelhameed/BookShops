@@ -35,6 +35,7 @@ import { FavoriteComponent } from './favorite/favorite.component';
 import { AddressComponent } from './address/address.component';
 import { OrderComponent } from './order/order.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 
 
 
@@ -79,6 +80,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FavoriteComponent,
     AddressComponent,
     OrderComponent,
+    OrderTrackingComponent,
 
 
     
