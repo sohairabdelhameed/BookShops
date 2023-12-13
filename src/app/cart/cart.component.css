@@ -1,5 +1,10 @@
-/* CSS for Cart Page */
-/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Nunito&display=swap');
+h3{
+    font-family: 'Fredericka the Great';
+    color: #a84221;
+  
+    
+}
 body{
   background-color:#f0e3e0 ;
 }
@@ -69,6 +74,32 @@ body{
   font-family: 'Font Awesome 5 Free';
 }
 
+.empty-cart-message {
+  text-align: center;
+  padding: 20%;
+
+ 
+}
+
+.empty-cart-message h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.empty-cart-message button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #644942;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.empty-cart-message button:hover {
+  background-color: #956d63;
+}
 /* Media Query for Responsive Design */
 @media (max-width: 768px) {
   .cart-item {

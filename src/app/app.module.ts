@@ -36,7 +36,9 @@ import { AddressComponent } from './address/address.component';
 import { OrderComponent } from './order/order.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { UserProductDetailsComponent } from './user-product-details/user-product-details.component';
+import { ManageUserOrdersComponent } from './dashboard/manage-user-orders/manage-user-orders.component';
 
 
 
@@ -51,7 +53,8 @@ import { OrderTrackingComponent } from './order-tracking/order-tracking.componen
     AngularFireStorageModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientModule
 
 
    ],
@@ -81,6 +84,8 @@ import { OrderTrackingComponent } from './order-tracking/order-tracking.componen
     AddressComponent,
     OrderComponent,
     OrderTrackingComponent,
+    UserProductDetailsComponent,
+    ManageUserOrdersComponent,
 
 
     

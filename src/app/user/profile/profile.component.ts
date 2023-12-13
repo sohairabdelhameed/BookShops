@@ -68,6 +68,7 @@ export class ProfileComponent implements OnInit {
           this.email = user.email || '';
           this.userId = user.uid || ''; 
           
+          
         } else {
           
         }
@@ -101,19 +102,19 @@ onFileSelected(event: any) {
       finalize(() => {
         fileRef.getDownloadURL().subscribe(
           url => {
-            this.userData.photoUrl = url; // Set 'photoUrl' in userData
-            this.newphotoUrl = url; // Set 'newphotoUrl' to use for updating
+            this.userData.photoUrl = url; 
+            this.newphotoUrl = url; 
             this.loadingImage = false; // Hide loader
           },
           error => {
             console.error('Error getting download URL:', error);
             this.loadingImage = false; // Hide loader in case of error
-            // Handle error here (e.g., display error message)
+   
           }
         );
       })
     ).subscribe(
-      // Handle additional errors or progress if needed
+      // Handle additional errors if needed
     );
   }
 }
@@ -125,8 +126,8 @@ onFileSelected(event: any) {
   
     if (this.newName !== this.username) {
       updatedUserData.username = this.newName;
-   
     }
+    
   
     if (this.newEmail !== this.email) {
       updatedUserData.email = this.newEmail;
@@ -162,6 +163,7 @@ onFileSelected(event: any) {
           console.error('Error updating user data:', error);
         });
     }
+    
   }
   
 

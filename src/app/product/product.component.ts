@@ -6,6 +6,7 @@ import { AuthService } from '../user/AuthenticationService/AuthService';
 import * as firebase from 'firebase';
 import { catchError } from 'rxjs/operators';
 import { FirestoreService } from 'src/firebaseServices/fireStore.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product',
@@ -17,7 +18,7 @@ export class ProductComponent implements OnInit {
   userFavorites: string[] = []; // To store user's favorite book IDs
   userId: string | null = null; // To store the current user's ID
 
-  constructor(private fireStore: FirestoreService , private firestoreCartService: FirestoreCartService, private storage: AngularFireStorage, private auth: AuthService) { }
+  constructor(  private snackBar : MatSnackBar,private fireStore: FirestoreService , private firestoreCartService: FirestoreCartService, private storage: AngularFireStorage, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.loadBooks();
@@ -53,6 +54,8 @@ export class ProductComponent implements OnInit {
   addToCartClicked(bookId: string) {
     console.log('Book ID:', bookId);
     this.firestoreCartService.addToCart(bookId);
+    const message = 'Book Added successfully!';
+    this.openSnackBar(message);
   }
   
   
@@ -83,5 +86,15 @@ export class ProductComponent implements OnInit {
     } else {
       console.error('User not logged in.');
     }
+    const message = 'Book added to favaorite!';
+    this.openSnackBar(message);
+  }
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    })
+   
   }
 }

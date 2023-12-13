@@ -53,37 +53,29 @@ export class AuthService {
       return credential.user;
     });
   }
+ 
+ 
   signUpWithEmail(username: string, email: string, password: string): Promise<any> {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then((credential) => {
+      .then(credential => {
+        // Update user's display name (username)
         return credential.user.updateProfile({
           displayName: username
-        })
-        .then(() => {
+        }).then(() => {
+          // Save additional user data (including username) to Firestore
           const userId = credential.user.uid;
           const userEmail = credential.user.email;
-  
+
           const userData = {
             username: username,
             email: userEmail,
           
           };
-  
-          return this.usersCollection.doc(userId).set(userData)
-            .then(() => {
-              return this.firestore.collection('userProfiles').doc(userId).set({
-              
-              });
-            });
+
+          return this.firestore.collection('users').doc(userId).set(userData);
         });
-      })
-      .catch(error => {
-        
-        console.error('Error in signUpWithEmail:', error);
-        throw error;
       });
   }
-  
   
   // Sign out
   signOut(): Promise<void> {
@@ -110,11 +102,23 @@ export class AuthService {
     return this.firestore.collection('users').doc(userId).valueChanges().pipe(
       map((userData: any) => {
         if (userData && userData.favorites) {
-          // Assuming favorites is an array of book IDs in user data
+          // favorites is an array of book IDs in user data
           return userData.favorites; // Return user's favorites
         } else {
           return []; // Return an empty array if favorites field is not present or empty
         }
+      })
+    );
+  }
+  getUserOrders(userId: string): Observable<any[]> {
+    // orders is a collection nested within each user document
+    return this.firestore.collection('users').doc(userId).collection('orders').snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
       })
     );
   }

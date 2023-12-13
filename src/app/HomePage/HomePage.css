@@ -1,78 +1,79 @@
 @import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
-body {
+html,body {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
    
-   
-    
 }
 
 /* Default styles for section containers */
-.section {
-    height: 100vh;
-    display: flex;
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-    padding: 10px;
+section {
+ 
+ height: 100vh;
+ border-radius: 5px;
+
 }
 
 /* Specific styles for #section1 */
 #section1 {
-    background-color: #f0e3e0;; /* Change background color if needed */
+ 
+    background-color: #f0e3e0;
+   
 }
 
 /* Specific styles for #section2 */
 #section2 {
     background-color: #d8ccca;
+    padding-top: 5%;
 }
 
 /* Specific styles for #section3 */
 #section3 {
+  padding-top: 5%;
     background-color: #f0e3e0;
 }
 
 /* Styles for text and image within sections */
 
 .h2txt {
-  font-family:Philosopher;
-  color:#42302c;
-  font-weight: 600;
-  text-shadow: 5px 5px #dbc9c5;
+ font-family: Philosopher;
+ color: #42302c;
+ font-weight: 600;
+ text-shadow: 5px 5px #dbc9c5;
+ margin-bottom: 10px;
+}
 
-}
 .ptxt{
-  font-family:Philosopher;
-  color:#74554d;
-  font-size: 18px;
-  font-weight:550;
+ font-family: Philosopher;
+ color: #74554d;
+ font-size: 18px;
+ font-weight: 550;
+ line-height: 1.5;
 }
+
 .text-image img {
     width: 80%; 
-    display:block;
-    transform:translate(30px , 30px);
-   
+    display: block;
+    transform: translate(30px , 30px);
 }
-.author-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px; 
 
+.author-container {
+ display: flex;
+ align-items: center;
+ margin-bottom: 20px; 
 }
 
 .text-content {
-  flex: 1;
-  padding: 20px; /* Adjust padding as needed */
-  margin-left: 10%;
-  margin-top: 5%;
+ flex: 1;
+ padding: 20px;
+ margin-left: 10%;
+ margin-top: 5%;
 }
 
 .image-content {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  margin-left: 10%;
-  margin-top: 5%;
-
+ flex: 1;
+ display: flex;
+ justify-content: flex-end;
+ margin-left: 10%;
+ margin-top: 5%;
 }
-
-

@@ -1,0 +1,27 @@
+.user-dashboard {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .user-info {
+    margin-bottom: 15px;
+  }
+  
+  .user-info__item {
+    margin: 5px 0;
+  }
+  
+  .order-list {
+    border: 1px solid #eee;
+    padding: 8px;
+    margin-top: 10px;
+    background-color: #fff;
+  }
+  
+  .order-info {
+    margin: 3px 0;
+    font-weight: bold;
+  }
+  

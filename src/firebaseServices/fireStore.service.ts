@@ -23,7 +23,7 @@ export class FirestoreService {
     );
 
     // Call a function to log book IDs
-   this.logBookIds();
+   //this.logBookIds();
   }
   getBooks(): Observable<any[]> {
     return this.books;

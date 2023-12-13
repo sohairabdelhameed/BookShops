@@ -1,0 +1,23 @@
+
+<div class="user-dashboard" *ngFor="let userWithOrders of usersWithOrders">
+    <div class="user-info">
+        <h4>Users Details:</h4>
+      <p class="user-info__item">User ID: {{ userWithOrders.user.id }}</p>
+      <p class="user-info__item">Username: {{ userWithOrders.user.username }}</p>
+      <p class="user-info__item">Email: {{ userWithOrders.user.email }}</p>
+      <h4>User Orders:</h4>
+      <div class="order-list" *ngFor="let order of userWithOrders.orders">
+        <p class="order-info">Order ID: {{ order.id }}</p>
+        <div *ngFor="let item of order.items">
+            <p>Title: {{ item.title }}</p>
+            <p>Author: {{ item.author }}</p>
+            
+          </div>
+          <p class="order-info">Total Price: {{ order.totalPrice }}</p>
+          <p class="order-info">Paid: {{ order.paid }}</p>
+          <p class="order-info">Payment Method: {{ order.paymentMethod }}</p>
+       
+      </div>
+    </div>
+  </div>
+  

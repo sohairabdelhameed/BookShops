@@ -4,7 +4,7 @@
     <title>Booktopia</title>
 </head>
 <body>
-  <div>
+ <div>
     <section id="section1" class="section">
       <section-one></section-one>
     </section>
@@ -17,7 +17,7 @@
           <p class="ptxt animate__animated animate__fadeInRight">{{ author.famousLine }}</p>
         </div>
         <div class="image-content">
-          <div class="text-image pattern-diagonal-lines-sm"  >
+          <div class="text-image pattern-diagonal-lines-sm" >
             <img [src]="author.photoUrl" alt="{{ author.name }}" class="author-image animate__animated animate__fadeInLeftBig">
           </div>
         </div>
@@ -27,8 +27,11 @@
     
     <section id="section3" class="section">
       <section-two></section-two>
+  
     </section>
-  </div>
+    <app-footer></app-footer>
+ </div>
     
 </body>
+
 </html>

@@ -1,9 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&family=Fredericka+the+Great&family=Nunito&display=swap');
+body{
+  background-color: #f0e3e0;
+}
+h2{
+    font-family:Philosopher;
+    color:#86351a;
+  
+   font-weight: 900;
+  
+}
+h4{
+  font-family:Philosopher;
+  color: #a84221;
+ font-weight: 900;
+
+}
+p{
+font-family: Comic Neue;
+font-weight: 800;
+color: #762e17;
+}
 .book-swapping-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px; /* Adjust height as needed */
-    position: relative; /* Ensure position relative for absolute positioning of child elements */
+    height: 300px;
+    position: relative; 
   }
   
   .book-container {
@@ -12,30 +35,34 @@
   }
   
   .book-image {
-    width: 25%; /* Adjust size as needed */
-    height: 25%; /* Adjust size as needed */
-    padding-top: 10%;
-    padding-left: 5%;
+    width: 30%; 
+    height: 25%; 
+    padding-top: 15%;
+    margin-left: 15%;
   }
   
   .swap-arrow {
     font-size: 50px;
-    color: #333; /* Adjust color as needed */
+    color: #333;
     position: absolute;
     top: 70%;
     left: 26%;
     animation: bounceText 1s infinite;
   }
   
-  
+  i{
+    font-size: 25px;
+  }
   .feature-description {
-    max-width: 40%; /* Adjust width of the description */
+ 
+    max-width: 40%;
     padding-left: 5%;
-    padding-top:5%;
+    padding-top:10%;
   
   }
   
   .feature-description h3 {
+  
     font-size: 25px;
     margin-bottom: 5px;
     animation: bounceText 1s ;

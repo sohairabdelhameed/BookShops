@@ -16,11 +16,15 @@ import { FavoriteComponent } from './favorite/favorite.component';
 import { AddressComponent } from './address/address.component';
 import { OrderComponent } from './order/order.component';
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
+import { UserProductDetailsComponent } from './user-product-details/user-product-details.component';
+import { SectionTwoComponent } from './HomePage/section2';
+import { ManageUserOrdersComponent } from './dashboard/manage-user-orders/manage-user-orders.component';
 
 
 export const appRoutes: Routes = [
   { path: 'HomePage', component: HomePageComponent },
   { path: '', redirectTo: '/HomePage', pathMatch: 'full' },
+  {path:'feature',component:SectionTwoComponent},
   { path: 'signIn', component: SigninComponent },
   { path: 'register', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },
@@ -28,9 +32,12 @@ export const appRoutes: Routes = [
   {path:'dashboard',component:DashboardComponent},
   {path:'userDash',component:UserDashboardComponent},
   {path:'cart',component:CartComponent},
-  { path: 'books/:id', component: BookDetailsComponent },
+  {path:'userOrders',component:ManageUserOrdersComponent},
+  {path: 'books/:id',
+  component: BookDetailsComponent},
   {path:'addBook',component:AddBookComponent},
   { path: 'usersBook', component:UsersProductComponent},
+  { path: 'usersBook/:id', component:UserProductDetailsComponent},
   {path:'manageBooks', component:ManageUsersComponent },
   {path:'fav',component:FavoriteComponent},
   {path:'address',component:AddressComponent},

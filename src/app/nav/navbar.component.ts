@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../user/AuthenticationService/AuthService';
 import { FirestoreService } from '../../firebaseServices/fireStore.service'; 
@@ -10,11 +10,16 @@ export class NavbarComponent implements OnInit {
   cartItemCount: number = 0;
   username: string = '';
 
-  constructor(private router: Router, private authService: AuthService,private firestoreService: FirestoreService) {}
+  constructor(private router: Router, private authService: AuthService,private firestoreService: FirestoreService, private el: ElementRef) {}
 
   ngOnInit() {
     this.getCurrentUser();
 
+  }
+  @Output() scrollToSectionEvent = new EventEmitter<string>();
+
+  scrollToSection(sectionId: string) {
+    this.scrollToSectionEvent.emit(sectionId);
   }
 
   getCurrentUser() {

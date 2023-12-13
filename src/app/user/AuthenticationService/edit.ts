@@ -3,7 +3,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: 'root'

@@ -4,7 +4,10 @@
     <div class="cart-page">
       <div *ngIf="cartItems.length === 0; else showCartItems" class="empty-cart-message">
         <h3>Your cart is empty</h3>
+        <button [routerLink]="['/track']">Check your Orders</button>
+        <p>Or</p>
         <button [routerLink]="['/books']" >Back to reading</button>
+
       </div>
     
       <!-- Cart items section -->

@@ -16,6 +16,8 @@
           <p>Age: {{ userData.age }}</p>
           <p>Gender : {{ userData.gender }}</p>
           <p> Favorites: <i [routerLink]="['/fav']" class="fas fa-heart"></i></p>
+          <p> Address: <i [routerLink]="['/address']" class="fas fa-location-pin-lock"></i></p>
+          <p> Your Orders: <i [routerLink]="['/track']" class="fas fa-shopping-bag"></i></p>
           <button class="btn mb-3" style="background-color: #a6796e; color: whitesmoke;" (click)="toggleEdit()">Edit</button>
        
         </div>

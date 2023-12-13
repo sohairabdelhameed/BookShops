@@ -11,6 +11,7 @@
      <p>Zip Code: {{ userAddress?.zipCode }}</p>
      <p>Country: {{ userAddress?.country }}</p>
      <p>Phone: {{ userAddress?.phone }}</p>
+     <p class="float-end"> Edit your Address: <i [routerLink]="['/address']" class="fas fa-location-pin-lock"></i></p>
   </div>
  
   <div *ngIf="userOrders.length > 0 && !allOrdersPaid()" class="user-orders">

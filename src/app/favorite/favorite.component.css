@@ -1,5 +1,5 @@
 .book-image {
-    max-width: 100px; /* Change this value to adjust the maximum width of the images */
+    max-width: 100px; 
     height: auto;
   }
   body,html{
@@ -10,9 +10,9 @@
   }
   .custom-list-item {
     box-shadow: 1px 1px 1px 1px #484443;
-    background-color: #f2e6e3; /* Change this hex color code to the blue color you prefer */
-    color: black; /* Text color for better readability on the blue background */
-    padding: 15px; /* Adjust padding as needed */
-    margin-bottom: 10px; /* Adjust margin between items */
+    background-color: #f2e6e3; 
+    color: black;
+    padding: 15px;
+    margin-bottom: 10px; 
   }
   

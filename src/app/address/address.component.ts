@@ -1,7 +1,12 @@
-// address.component.ts
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from '../user/AuthenticationService/AuthService';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-address',
@@ -10,66 +15,110 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AddressComponent {
   userId: string | null = null;
-  fullName: string = '';
-  addressLine1: string = '';
-  addressLine2: string = '';
-  phone:number ;
-  city: string = '';
-  state: string = '';
-  zipCode: string = '';
-  country: string = '';
-  userEmail: string | null = null;
+  userAddress: any = {
+    fullName: '',
+    addressLine1: '',
+    addressLine2: '',
+    phone: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    country: ''
+  };
+  countries: string[] = [];
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
-    // Existing code...
-
-    // Subscribe to the authentication state changes
+  constructor(
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private authService: AuthService,
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
+    private http: HttpClient,
+    private location: Location
+  ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userId = user.uid;
-        this.userEmail = user.email; // Get user's email
       } else {
         this.userId = null;
-        this.userEmail = null;
       }
     });
   }
 
-  updateAddress() {
+  ngOnInit() {
+    this.userId = this.authService.getCurrentUserID();
     if (this.userId) {
-      const addressData = {
-        fullName: this.fullName,
-        addressLine1: this.addressLine1,
-        addressLine2: this.addressLine2,
-        city: this.city,
-        state: this.state,
-        zipCode: this.zipCode,
-        country: this.country,
-        phone: this.phone
-      };
+      this.fetchAddress();
+      this.getCountries();
+    }
+  }
 
+  fetchAddress() {
+    if (this.userId) {
       const userDocRef = this.afs.collection('users').doc(this.userId);
 
-      userDocRef.get().toPromise()
-        .then(doc => {
-          if (doc.exists) {
-            return userDocRef.update({ address: addressData });
-          } else {
-            return userDocRef.set({ address: addressData }); // Create the document if it doesn't exist
-          }
-        })
-        .then(() => {
-          console.log('Address updated successfully in the users collection');
-          // Optionally, navigate to the next step in the checkout process
-        })
-        .catch(error => {
-          console.error('Error updating address:', error);
-          // Handle error
-        });
+      userDocRef.get().subscribe((userData: any) => {
+        if (userData.exists) {
+          this.userAddress = userData.data().address || {};
+        } else {
+          console.log('User document does not exist. Creating a new one.');
+          // Create a new user document with the address
+          userDocRef.set({ address: this.userAddress })
+            .then(() => {
+              console.log('New user document created with address.');
+            })
+            .catch((error) => {
+              console.error('Error creating user document:', error);
+            });
+        }
+      });
     } else {
       console.error('User not authenticated');
-      // Handle the case where the user is not authenticated
     }
+  }
+
+  updateAddress() {
+    if (this.userId) {
+      const userDocRef = this.afs.collection('users').doc(this.userId);
+
+      userDocRef.get().subscribe((userData: any) => {
+        if (userData.exists) {
+          // Update the existing user document with the new address
+          userDocRef.update({ address: this.userAddress })
+            .then(() => {
+              console.log('Address updated successfully!');
+              this.openSnackBar('Address updated successfully!');
+            })
+            .catch((error) => {
+              console.error('Error updating address:', error);
+              this.openSnackBar('Failed to update address.');
+            });
+        } else {
+          console.log('User document does not exist. Cannot update address.');
+          this.openSnackBar('User document does not exist.');
+        }
+      });
+    } else {
+      console.error('User not authenticated');
+    }
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
+  }
+goesBack(){
+  this.location.back();
+}
+
+  getCountries(): void {
+    this.http.get<any>('https://restcountries.com/v3.1/all').subscribe(data => {
+      this.countries = data.map((country: any) => country.name.common)
+                          .sort((a: string, b: string) => a.localeCompare(b)); // Sort alphabetically
+    });
   }
   
 }

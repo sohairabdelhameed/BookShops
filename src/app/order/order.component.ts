@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../user/AuthenticationService/AuthService';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -20,14 +21,15 @@ export class OrderComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private afs: AngularFirestore,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {
     this.userAddress = {};
     this.userId = this.authService.getCurrentUserID();
   }
 
   ngOnInit() {
-    this.userId = this.authService.getCurrentUserID();
+    this.userId = this.authService.getCurrentUserID()
     if (this.userId) {
       this.fetchAddress();
       this.fetchUserOrders();
@@ -37,12 +39,14 @@ export class OrderComponent implements OnInit {
   fetchAddress() {
     if (this.userId) {
       const userDocRef = this.afs.collection('users').doc(this.userId);
-
+  
       userDocRef.valueChanges().subscribe((userData: any) => {
         if (userData && userData.address) {
           this.userAddress = userData.address;
         } else {
           console.log('Address not found for this user.');
+          // Navigate to the address page if the address is null
+          this.router.navigate(['/address']); 
         }
       });
     } else {

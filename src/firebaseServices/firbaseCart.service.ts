@@ -62,28 +62,27 @@ export class FirestoreCartService  {
                         id: bookId,
                         quantity: 1 // Initial quantity when adding to cart
                       };
+                      
+                  
                       this.cartCollection.doc(bookId).set(cartItem)
-                        .then(() => {
+                       
+                      .then(() => {
                           console.log('Item added to cart successfully!');
                         })
+                        
                         .catch((error: any) => {
                           console.error('Error adding item to cart:', error);
                           // Handle error
-                        });
+                        }) 
+                       
                     }
                   } else {
                     console.error('Requested quantity exceeds available quantity.');
-                    // Handle the case where the requested quantity exceeds available quantity
+                  
                   }
                 })
-                .catch((error: any) => {
-                  console.error('Error checking cart:', error);
-                  // Handle error
-                });
-            } else {
-              console.error('Book not found in the bookstore.');
-              // Handle the case where the book is not found in the bookstore
-            }
+               
+            } 
           })
           .catch((error: any) => {
             console.error('Error fetching book details:', error);
@@ -97,6 +96,7 @@ export class FirestoreCartService  {
       console.error('User not authenticated');
       // Handle the case where the user is not authenticated
     }
+
   }
   
   
@@ -109,8 +109,7 @@ export class FirestoreCartService  {
       })
       .catch((error: any) => {
         console.error('Error updating item quantity in cart:', error);
-        // Handle error
-        throw error; // Rethrow the error for handling in the component if needed
+       
       });
   }
   increaseCartItemQuantity(userId: string, bookId: string) {
@@ -132,7 +131,7 @@ export class FirestoreCartService  {
       });
     } else {
       console.error('User not authenticated');
-      // Handle the case where the user is not authenticated
+    
       return Promise.reject('User not authenticated');
     }
   }
@@ -141,7 +140,7 @@ export class FirestoreCartService  {
       this.cartCollection.doc(bookId).delete();
     } else {
       console.error('User not authenticated');
-      // Handle the case where the user is not authenticated
+     
     }
   }
 
@@ -150,7 +149,7 @@ export class FirestoreCartService  {
       return this.cartCollection.valueChanges();
     } else {
       console.error('User not authenticated');
-      // Handle the case where the user is not authenticated
+    
       return new Observable<any[]>(observer => {
         observer.next([]); // Return an empty array if user is not authenticated
         observer.complete();
@@ -161,9 +160,8 @@ export class FirestoreCartService  {
     return new Promise((resolve, reject) => {
       if (this.userId) {
         const orderId = this.afs.createId();
-        const orderRef = this.afs.collection(`users/${this.userId}/orders`).doc(orderId); // Save under users/{userId}/orders
+        const orderRef = this.afs.collection(`users/${this.userId}/orders`).doc(orderId); 
   
-        // Fetch details for each product in the cartItems array
         const fetchProductDetails = cartItems.map(item => {
           return this.afs.collection('books').doc(item.id).valueChanges().pipe(
             map((productDetails: any) => ({
@@ -255,4 +253,5 @@ export class FirestoreCartService  {
       return Promise.reject('User not authenticated');
     }
   }
+ 
 }

@@ -15,7 +15,7 @@ export class AddBookComponent{
     title: '',
     author: '',
     photoUrl: '' 
-    // Add other book details as needed
+    // Add other book details needed
   };
   loadingImage: boolean = false;
   constructor( private dialog: MatDialog ,private bookService: BookService, private storage: AngularFireStorage) { }
@@ -31,7 +31,7 @@ export class AddBookComponent{
     task.snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe(url => {
-          this.bookData.photoUrl = url; // Set 'photoUrl' in bookData
+          this.bookData.photoUrl = url; 
           this.loadingImage = false; 
         });
       })
