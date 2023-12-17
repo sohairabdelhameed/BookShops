@@ -1,0 +1,75 @@
+/* Add this CSS to your component's CSS file or the global styles */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&family=Fredericka+the+Great&family=Handlee&family=Lobster+Two&family=Nunito&family=Oleo+Script&family=Philosopher&display=swap');
+
+.txt_title{
+
+font-family: 'Lobster Two', cursive;
+color: #644942;
+text-shadow: 4px 4px 4px #aaa;
+font-family: 'Lemonada';
+}
+
+.txt_desc{
+    font-family: 'Philosopher';
+    color:#74554d;
+    font-weight:550;
+
+}
+.txt_auth{
+    font-family: 'Philosopher';
+    font-weight: bolder;
+    font-size:medium;
+    color:#af867d
+}
+.price{
+    font-family: 'Comic Neue';
+    color:#644942;
+    font-weight:bolder;
+    font-size:large;
+}
+.txt_user{
+font-family: 'Comic Neue' ;
+
+
+}
+body {
+    background-color: #f2e6e3;
+ }
+
+ .container {
+    background-color: #f2e6e3;
+ }
+
+ .card {
+    border: none;
+    background-color: #f2e6e3;
+ }
+
+ .card-title {
+    color: #644942;
+ }
+
+ .card-text {
+    color: #644942;
+ }
+
+
+ .btn-outline-dark {
+    background-color: #644942;
+    color: #f2e6e3;
+    border: none;
+ }
+
+ .btn-outline-dark:hover {
+    background-color: #4d3935;
+    color: #f2e6e3;
+ }
+
+ @keyframes rotateAndSlide {
+    0% {
+      transform: rotateY(25deg) translateX(100%);
+    }
+    100% {
+      transform: rotateY(0) translateX(0);
+    }
+ }

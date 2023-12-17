@@ -17,13 +17,8 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.author$ = this.firestoreAuthorService.getRandomAuthor();
   }
-  scrollToSection(sectionId: string) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const yOffset = section.getBoundingClientRect().top + window.pageYOffset;
-      this.renderer.setProperty(document.documentElement, 'scrollTop', yOffset);
-    }
-  }
+  
+  
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const section2 = this.el.nativeElement.querySelector('#section2');

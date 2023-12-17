@@ -3,6 +3,7 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { UserBookService } from 'src/firebaseServices/userBook.Service';
 import { finalize } from 'rxjs/operators';
 import { AuthService } from '../AuthenticationService/AuthService';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -18,12 +19,16 @@ export class UserDashboardComponent implements OnInit {
     photoUrl:''
   };
   loadingImage: boolean = false;
+  //imageUploaded: boolean = false;
+  //imageTouched: boolean = false;
+
   username: string = '';
 
   constructor(
     private authService: AuthService,
     private userService: UserBookService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private snackBar : MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -48,11 +53,12 @@ export class UserDashboardComponent implements OnInit {
     this.loadingImage = false; // Hide the loader when the image is loaded
   }
   onFileSelected(event: any) {
-    
+ 
     const file = event.target.files[0];
     const filePath = `books/${file.name}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
+   
     this.loadingImage = true; //image loader
     task.snapshotChanges().pipe(
       finalize(() => {
@@ -67,28 +73,48 @@ export class UserDashboardComponent implements OnInit {
   onSubmit() {
     const userID = this.authService.getCurrentUserID();
     const username = this.authService.getCurrentUsername();
-
+  
     if (userID && username) {
-      this.bookData.userId = userID;
-      this.bookData.username = username;
-      this.bookData.choice = this.bookData.choice === 'swap' ? 'swap' : 'sell';
-      this.userService.addBook(this.bookData)
-        .then((docRef) => {
-          console.log('Book added successfully with ID:', docRef.id);
-          this.bookData = {
-            title: '',
-            author: '',
-            choice: '', 
-            price: null, // Clear the price after submission
-            photoUrl: '',
-            userId: ''
-          };
-        })
-        .catch(error => {
-          console.error('Error adding book: ', error);
-        });
+      if (this.bookData.photoUrl) { // Check if an image is uploaded
+        this.bookData.userId = userID;
+        this.bookData.username = username;
+        this.bookData.choice = this.bookData.choice === 'swap' ? 'swap' : 'sell';
+        this.userService.addBook(this.bookData)
+          .then((docRef) => {
+            console.log('Book added successfully with ID:', docRef.id);
+            this.bookData = {
+              title: '',
+              author: '',
+              choice: '', 
+              price: null, 
+              title_of_exchange_book:'',
+              author_of_exchange_book:'',
+              photoUrl: '',
+              userId: ''
+            };
+          
+          })
+          .catch(error => {
+            console.error('Error adding book: ', error);
+          });
+      } else {
+        const message = 'Please Upload the image of the Book';
+    this.openSnackBar(message);
+        console.error('Please upload an image before submitting the form.');
+
+      }
     } else {
       console.error('User not logged in or username not available.');
     }
   }
-}
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    })
+   
+  }
+}  
+  
+

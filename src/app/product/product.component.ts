@@ -52,9 +52,16 @@ export class ProductComponent implements OnInit {
     });
   }
   addToCartClicked(bookId: string) {
+    if (!this.userId) {
+      // User is not logged in
+      const message = 'Please log in to add to cart.';
+      this.openSnackBar(message);
+      return;
+    }
+
     console.log('Book ID:', bookId);
     this.firestoreCartService.addToCart(bookId);
-    const message = 'Book Added successfully!';
+    const message = 'Book added to cart successfully!';
     this.openSnackBar(message);
   }
   
@@ -75,19 +82,23 @@ export class ProductComponent implements OnInit {
 
   addToFavorites(bookId: string) {
     const userId = this.auth.getCurrentUserID(); // Get current user ID
-    if (userId) {
-      this.auth.updateUserFavorites(userId, bookId)
-        .then(() => {
-          console.log('Book added to favorites successfully!');
-        })
-        .catch((error) => {
-          console.error('Error adding book to favorites:', error);
-        });
-    } else {
-      console.error('User not logged in.');
+
+    if (!userId) {
+      // User is not logged in
+      const message = 'Please log in to add to favorites.';
+      this.openSnackBar(message);
+      return;
     }
-    const message = 'Book added to favaorite!';
-    this.openSnackBar(message);
+
+    this.auth.updateUserFavorites(userId, bookId)
+      .then(() => {
+        console.log('Book added to favorites successfully!');
+        const message = 'Book added to favorites!';
+        this.openSnackBar(message);
+      })
+      .catch((error) => {
+        console.error('Error adding book to favorites:', error);
+      });
   }
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Close', {

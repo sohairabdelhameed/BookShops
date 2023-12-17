@@ -13,7 +13,7 @@ import{HomePageComponent}from './HomePage/HomePage.component';
 import { SignupComponent } from './user/sign-up/sign-up.component';
 import {AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import{AngularFirestoreModule} from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
@@ -42,6 +42,7 @@ import { ManageUserOrdersComponent } from './dashboard/manage-user-orders/manage
 
 
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -54,7 +55,8 @@ import { ManageUserOrdersComponent } from './dashboard/manage-user-orders/manage
     BrowserAnimationsModule,
     MatDialogModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
 
 
    ],

@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
 html,body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #f0e3e0;
    
 }
 
@@ -17,7 +19,7 @@ section {
 /* Specific styles for #section1 */
 #section1 {
  
-    background-color: #f0e3e0;
+    background-color: #dbc9c5;
    
 }
 
@@ -76,4 +78,78 @@ section {
  justify-content: flex-end;
  margin-left: 10%;
  margin-top: 5%;
+}
+
+.intro {
+    height: 100vh;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
+  
+}
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 4%;
+}
+
+.text {
+    flex: 1;
+    text-align: left;
+    margin-right: 20px;
+}
+.image {
+    flex: 1;
+    text-align: right;
+}
+
+.image img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 5%;
+    margin-bottom: 20px;
+    margin-right: 16%;
+}
+
+.image p {
+    margin-right: 5%;
+    text-shadow: 2px 2px #dbc9c5;
+   
+}
+
+
+
+.intro h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-family: Lobster Two;
+    color: #856158;
+    text-shadow: 4px 4px #dbc9c5;
+}
+
+.intro h2 {
+    
+    font-size: 1.8em;
+    color: #856158;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-family: Lobster Two;
+}
+
+
+.intro p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+    font-family: Philosopher;
+}
+
+
+
+
+.intro a::hover {
+    color: #42302c;
+    cursor: pointer;
 }

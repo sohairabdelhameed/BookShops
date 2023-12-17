@@ -13,9 +13,9 @@
                 <h2 class="card-title txt_title" [ngStyle]="{ 'font-family': getFontFamily(book?.title) }">{{ book?.title }}</h2>
                 <p class="card-text txt_auth">By: {{ book?.author }}</p>
                 <p class="card-text txt_desc">{{ book?.description }}</p>
-                <p class="card-text price">Price: ${{ book?.price }}</p>
-                <p class="card-text price">Swap: {{ book?.choice }}</p>
-                <button (click)="addToCart()" class="btn btn-outline-dark mt-3" style="background-color: #644942; color:#f2e6e3">Add to Cart</button>
+                <p class="card-text price" *ngIf="book?.price !== null && book?.price !== undefined">Price: ${{ book?.price }}</p>
+                <p class="card-text txt_desc" style="color:black" *ngIf="book?.title_of_exchange_book !== null && book?.title_of_exchange_book !== undefined"> I would like to swap this book for : {{ book?.title_of_exchange_book }} written by:  {{ book?.author_of_exchange_book}}</p>
+           
               </div>
             </div>
           </div>
@@ -25,15 +25,21 @@
         <div class="card mb-3 shadow-sm" style="background-color: #f2e6e3; margin-top: 15%;">
           <div class="card-body">
             <div *ngIf="userDetails && userDetails.address">
-              <h3>{{ userDetails.address.fullName }} <span ><i class="fas fa-location-pin-lock"></i></span></h3>
+              <h3 class="txt_user" style="color:#4c3a2d; font-weight: 800;">{{ userDetails.address.fullName }} <span ><i class="fas fa-location-pin-lock"></i></span></h3>
               <div>
                 <p><b>Country:</b> {{ userDetails.address.country }}</p>
                 <p><b>City:</b> {{ userDetails.address.city }}</p>
                 <p><b>Address Line 1:</b> {{ userDetails.address.addressLine1 }}</p>
                 <p><b>Zip Code:</b> {{ userDetails.address.zipCode }}</p>
-                <h3>Connect {{ userDetails.address.fullName }} via: </h3>
-                <p><span ><i class="fas fa-envelope"></i></span><b></b> {{ userDetails.email }}</p>
-                <p><span ><i class="fas fa-phone"></i></span><b></b> {{ userDetails.address.phone }}</p>
+                <h3 class="txt_user">Connect {{ userDetails.address.fullName }} via:</h3>
+                <p>
+                  <span style="margin-right: 5px;"><i class="fas fa-envelope"></i></span>
+                  <b><a style="color:#4c3a2d" href="mailto:{{ userDetails.email }}?subject=Iam%20connecting%20with%20you%20regarding%20the%20swapping%20of%20{{book.title}}">{{ userDetails.email }}</a></b>
+                </p>
+                
+                
+                
+                <p> <span ><i class="fas fa-phone"></i></span><b></b>   {{ userDetails.address.phone }}</p>
               </div>
             </div>
           </div>
@@ -44,50 +50,5 @@
   
 
   <app-footer></app-footer>
-  <style>
-    body {
-       background-color: #f2e6e3;
-    }
-   
-    .container {
-       background-color: #f2e6e3;
-    }
-   
-    .card {
-       border: none;
-       background-color: #f2e6e3;
-    }
-   
-    .card-title {
-       color: #644942;
-    }
-   
-    .card-text {
-       color: #644942;
-    }
-   
-    .price {
-       font-weight: bold;
-    }
-   
-    .btn-outline-dark {
-       background-color: #644942;
-       color: #f2e6e3;
-       border: none;
-    }
-   
-    .btn-outline-dark:hover {
-       background-color: #4d3935;
-       color: #f2e6e3;
-    }
-   
-    @keyframes rotateAndSlide {
-       0% {
-         transform: rotateY(25deg) translateX(100%);
-       }
-       100% {
-         transform: rotateY(0) translateX(0);
-       }
-    }
-   </style>
+ 
   

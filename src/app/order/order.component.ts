@@ -3,6 +3,7 @@ import { AuthService } from '../user/AuthenticationService/AuthService';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-order',
@@ -16,16 +17,23 @@ export class OrderComponent implements OnInit {
   showPaymentOptions: boolean = true;
   userOrdersWithProducts: any[] = [];
   showCreditCardForm: boolean = false;
+  creditCardForm: FormGroup;
 
 
   constructor(
     private authService: AuthService,
     private afs: AngularFirestore,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {
     this.userAddress = {};
     this.userId = this.authService.getCurrentUserID();
+    this.creditCardForm = this.formBuilder.group({
+      cardNumber: ['', [Validators.required, Validators.pattern('[0-9]{16}')]],
+      expiryDate: ['', [Validators.required, Validators.pattern('(0[1-9]|10|11|12)/[0-9]{2}')]],
+      cvv: ['', [Validators.required, Validators.pattern('[0-9]{3}')]]
+    });
   }
 
   ngOnInit() {
@@ -134,11 +142,33 @@ export class OrderComponent implements OnInit {
 opencreditcard(){
   this.showCreditCardForm = true;
 }
+get cardNumber() {
+  return this.creditCardForm.get('cardNumber');
+}
+
+get expiryDate() {
+  return this.creditCardForm.get('expiryDate');
+}
+
+get cvv() {
+  return this.creditCardForm.get('cvv');
+}
+
   payWithCreditCard() {
-    const selectedPaymentMethod = 'Credit Card';
-    this.updateOrdersPayment(selectedPaymentMethod);
-    this.showCreditCardForm = false;
-    this.openSnackBar('Payment successful!');
+      if (this.creditCardForm.valid) {
+        const selectedPaymentMethod = 'Credit Card';
+        this.updateOrdersPayment(selectedPaymentMethod);
+          this.showCreditCardForm = false;
+          this.openSnackBar('Payment successful!');
+          console.log('Payment submitted!');
+      } else {
+        const errorMessage = 'Please Complete the required Feilds';
+        this.openSnackBar(errorMessage);
+        this.creditCardForm.markAllAsTouched();
+
+      }
+    
+    
   
   }
 

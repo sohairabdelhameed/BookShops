@@ -1,27 +1,106 @@
+/* CSS for user dashboard */
 .user-dashboard {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .user-info {
-    margin-bottom: 15px;
-  }
-  
-  .user-info__item {
-    margin: 5px 0;
-  }
-  
-  .order-list {
-    border: 1px solid #eee;
-    padding: 8px;
-    margin-top: 10px;
-    background-color: #fff;
-  }
-  
-  .order-info {
-    margin: 3px 0;
-    font-weight: bold;
-  }
-  
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+/* Styling for user information */
+.user-info {
+  margin-bottom: 20px;
+}
+
+.user-info h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.user-info__item {
+  margin: 5px 0;
+}
+
+/* Styling for order details */
+.order-list {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.order-info {
+  margin: 5px 0;
+}
+
+/* Styling for individual items in an order */
+.order-item {
+  margin-bottom: 5px;
+}
+
+
+/* Optional: Adding hover effect */
+.user-dashboard:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.user-info {
+  margin-bottom: 20px;
+}
+
+.user-info h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.user-info__item {
+  margin: 5px 0;
+}
+
+.user-orders {
+  margin-top: 20px;
+}
+
+.order-list {
+  overflow-x: auto;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+/* Define classes for different status indicators */
+.status-indicator {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Customize classes based on different statuses */
+.pending {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.delivered {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.cancelled {
+  background-color: #dc3545;
+  color: #fff;
+}

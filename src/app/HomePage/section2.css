@@ -37,22 +37,11 @@ color: #762e17;
   .book-image {
     width: 30%; 
     height: 25%; 
-    padding-top: 15%;
+    margin-top: 15%;
     margin-left: 15%;
   }
   
-  .swap-arrow {
-    font-size: 50px;
-    color: #333;
-    position: absolute;
-    top: 70%;
-    left: 26%;
-    animation: bounceText 1s infinite;
-  }
-  
-  i{
-    font-size: 25px;
-  }
+
   .feature-description {
  
     max-width: 40%;

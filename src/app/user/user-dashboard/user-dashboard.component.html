@@ -1,48 +1,101 @@
 <!DOCTYPE html>
 <html>
-<head>
 
-</head>
 <body>
   <div class="container">
     <div class="row">
       <div class="col-md-6" style="margin-top: 15%;">
         <h3 class="animate__animated animate__lightSpeedInLeft">Swap a book, share a story, and pass on the magic of reading.</h3>
-      
         <p>
-            Books are more than words on a page; they are adventures waiting to be shared. 
-           <br>
-            Now you can swap your book with a friend or sell it here on Booktopia</p>
-      
-    </div>
-      <div class="col-md-6 animate__animated animate__lightSpeedInLeft"  style="margin-top: 5%;">
-        <form (ngSubmit)="onSubmit()">
-          <label>Title</label>
-          <input type="text" [(ngModel)]="bookData.title" name="title" required class="form-control">
+          Books are more than words on a page; they are adventures waiting to be shared. 
+          <br>
+          Now you can swap your book with a friend or sell it here on Booktopia
+        </p>
+      </div>
+      <div class="col-md-6 animate__animated animate__lightSpeedInLeft" style="margin-top: 5%;">
+        <form (ngSubmit)="onSubmit()" #addBookForm="ngForm" novalidate>
+          <label>Title <span class="required-star">*</span></label>
+          <input type="text" [(ngModel)]="bookData.title" name="title" required class="form-control input-instruction"
+            data-toggle="tooltip" data-placement="top" title="Please enter the title of the book" #titleInput="ngModel">
+          <div *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched)" class="text-danger">
+            <div *ngIf="titleInput.errors?.required">Title is required</div>
+          </div>
 
-          <label>Author</label>
-          <input type="text" [(ngModel)]="bookData.author" name="author" required class="form-control">
+          <label>Author <span class="required-star">*</span></label>
+          <input type="text" [(ngModel)]="bookData.author" name="author" required class="form-control input-instruction"
+            data-toggle="tooltip" data-placement="top" title="Please enter the author of the book" #authorInput="ngModel">
+          <div *ngIf="authorInput.invalid && (authorInput.dirty || authorInput.touched)" class="text-danger">
+            <div *ngIf="authorInput.errors?.required">Author is required</div>
+          </div>
 
-          <label class="select-label">How would you like to handle this book?</label>
+          <label>Upload Image Of your Book <span class="required-star">*</span></label>
+<input type="file" (change)="onFileSelected($event)" accept="image/*" required
+  class="form-control input-instruction" data-toggle="tooltip" data-placement="top"
+  title="Upload an image of the book">
+<!-- <div *ngIf="!imageUploaded && imageTouched" class="text-danger">Image is required</div> -->
+
+          <span class="input-instruction" data-toggle="tooltip" data-placement="top"
+            title="Please upload an image of the book"></span>
+          <div *ngIf="loadingImage" class="loader"></div>
+          <img *ngIf="bookData.photoUrl" [src]="bookData.photoUrl" alt="Selected Image Preview"
+            class="selected-image">
+
+          <label class="select-label">How would you like to handle this book? <span class="required-star">*</span></label>
           <div class="select-wrapper">
-            <select [(ngModel)]="bookData.choice" name="choice" class="form-control" (change)="onOptionChange()">
+            <select [(ngModel)]="bookData.choice" name="choice" class="form-control input-instruction"
+              (change)="onOptionChange()" required data-toggle="tooltip" data-placement="top"
+              title="Please select an option" #choiceInput="ngModel">
+              <option value="" disabled selected>Select Option</option>
               <option value="sell">I want to sell this book</option>
               <option value="swap">I want to swap this book</option>
             </select>
             <i class="fas fa-chevron-down select-icon"></i>
           </div>
-          
-          
+          <div *ngIf="choiceInput.invalid && (choiceInput.dirty || choiceInput.touched)" class="text-danger">
+            <div *ngIf="choiceInput.errors?.required">Please select an option</div>
+          </div>
 
-          <label>Upload Image</label>
-          <input type="file" (change)="onFileSelected($event)" accept="image/*" required class="form-control">
-          <div *ngIf="loadingImage" class="loader"></div>
-          <img *ngIf="bookData.photoUrl" [src]="bookData.photoUrl" alt="Selected Image Preview" class="selected-image">
-          <button type="submit" class="btn mt-3 add-book-btn">Add Book</button>
+          <div *ngIf="bookData.choice === 'sell'">
+            <label>Enter the price of the book <span class="required-star">*</span></label>
+            <input type="number" [(ngModel)]="bookData.price" name="price" required
+              class="form-control input-instruction" data-toggle="tooltip" data-placement="top"
+              title="Please enter the price of the book" #priceInput="ngModel">
+            <div *ngIf="priceInput.invalid && (priceInput.dirty || priceInput.touched)" class="text-danger">
+              <div *ngIf="priceInput.errors?.required">Price is required</div>
+            </div>
+          </div>
+
+          <div *ngIf="bookData.choice === 'swap'">
+            <label>I Want to exchange this book with <span class="required-star">*</span></label>
+            <input type="text" [(ngModel)]="bookData.title_of_exchange_book" name="title_of_exchange_book"
+              required class="form-control input-instruction" data-toggle="tooltip" data-placement="top"
+              title="Please enter the title for exchange" #exchangeTitleInput="ngModel">
+            <div *ngIf="exchangeTitleInput.invalid && (exchangeTitleInput.dirty || exchangeTitleInput.touched)"
+              class="text-danger">
+              <div *ngIf="exchangeTitleInput.errors?.required">Exchange title is required</div>
+            </div>
+
+            <label> By Author: <span class="required-star">*</span></label>
+            <input type="text" [(ngModel)]="bookData.author_of_exchange_book" name="author_of_exchange_book"
+              required class="form-control input-instruction" data-toggle="tooltip" data-placement="top"
+              title="Please enter the author for exchange" #exchangeAuthorInput="ngModel">
+            <div *ngIf="exchangeAuthorInput.invalid && (exchangeAuthorInput.dirty || exchangeAuthorInput.touched)"
+              class="text-danger">
+              <div *ngIf="exchangeAuthorInput.errors?.required">Exchange author is required</div>
+            </div>
+          </div>
+
+          <button type="submit" [disabled]="addBookForm.invalid" class="btn mt-3 add-book-btn">Add Book</button>
         </form>
       </div>
     </div>
   </div>
+
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
 </body>
 <app-footer></app-footer>
 </html>

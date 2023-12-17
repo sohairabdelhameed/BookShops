@@ -141,3 +141,25 @@ text-shadow: 4px 4px 4px #aaa;
     25% , 75%{ transform: rotate(0deg)}
     100% {  transform: rotate(25deg)}
   }
+ 
+  .tooltip-inner {
+    background-color: #333; 
+    color: #fff;
+    max-width: 200px; 
+    padding: 5px 10px; 
+    border-radius: 4px; 
+  }
+
+  /* Tooltip arrow */
+  .arrow::before {
+    border-top-color: #333 !important; 
+  }
+
+
+  .input-instruction {
+    display: inline-block;
+    color: #333;
+    margin-left: 5px;
+    cursor: help;
+  }
+

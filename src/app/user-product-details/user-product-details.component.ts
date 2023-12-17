@@ -62,18 +62,6 @@ getAddressArray(addresses: any): any[] {
   }
 }
 
-  addToCart(): void {
-    this.route.paramMap.subscribe(params => {
-      const bookId = params.get('id');
-      if (bookId) {
-        this.firestoreService.getBookById(bookId).subscribe(book => {
-          this.firestoreCartService.addToCart(bookId);
-          const message = 'Book Added successfully!';
-          this.openSnackBar(message);
-        });
-      }
-    });
-  }
 
   getFontFamily(title: string | undefined): string {
     if (title) {
