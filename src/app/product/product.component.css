@@ -3,15 +3,27 @@
 
 /* Apply the font-family to the paragraph */
 .txt{
-    font-family: 'Comic Neue', cursive;
-    color:#b9684d;
-    font-weight:normal;
+    font-family: 'Comic Neue';
+    color:#5a5855;
+    font-weight:800;
 }
 
 
-h2{
-    color: #b15537;
+h5,h2{
+    color: black;
     font-family:'Lobster Two' , serif;
     text-shadow: 4px 4px 4px #aaa;
 }
 
+p{
+    font-family: 'Comic Neue';
+    color:#5a5855;
+    font-weight:700;
+}
+
+.hover-effect {
+    
+    transform: scale(1.1); 
+    transition: transform 0.3s ease; 
+  }
+  

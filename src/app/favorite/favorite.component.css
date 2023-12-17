@@ -5,12 +5,12 @@
   body,html{
     margin: 0; 
     padding: 0;
-    background-color: #f0e3e0;
+    background-color: #f6f4f2;
     
   }
   .custom-list-item {
-    box-shadow: 1px 1px 1px 1px #484443;
-    background-color: #f2e6e3; 
+    box-shadow: 1px 1px 1px 1px #aaa;
+    background-color: #f6f4f2; 
     color: black;
     padding: 15px;
     margin-bottom: 10px; 

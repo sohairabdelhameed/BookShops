@@ -6,14 +6,12 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 20px;
+     
+      padding: 0;
     }
     .container {
       max-width: 800px;
-      margin: 0 auto;
-      background-color: #fff;
+     
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -61,6 +59,7 @@
   </style>
 </head>
 <body>
+ <div style="padding-block: 80px;">
   <div class="container">
     <h2>Order Tracking</h2>
     <div *ngFor="let ordersGroup of groupedOrders" class="order-group">
@@ -77,5 +76,6 @@
       <hr>
     </div>
   </div>
+ </div>
 </body>
 </html>

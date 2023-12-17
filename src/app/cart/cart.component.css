@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Nunito&display=swap');
 h3{
     font-family: 'Fredericka the Great';
-    color: #a84221;
+    color: black;
   
     
 }
 body{
-  background-color:#f0e3e0 ;
+  background-color:#f6f4f2 ;
 }
 .cart-page {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f0e3e0;
+  background-color: #f6f4f2;
 }
 
 .cart-item {
@@ -44,7 +44,7 @@ body{
 }
 
 .quantity-btn {
-  background: #d3bcb7;
+  background: #87837f;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
@@ -56,7 +56,7 @@ body{
 }
 
 .remove-btn {
-  background: #956d63;
+  background: #434240;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -83,14 +83,14 @@ body{
 
 .empty-cart-message h3 {
   font-size: 24px;
-  color: #333;
+  color: black;
   margin-bottom: 10px;
 }
 
 .empty-cart-message button {
   padding: 10px 20px;
   margin: 5px;
-  background-color: #644942;
+  background-color: #87837f;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -98,7 +98,7 @@ body{
 }
 
 .empty-cart-message button:hover {
-  background-color: #956d63;
+  background-color: #87837f;
 }
 /* Media Query for Responsive Design */
 @media (max-width: 768px) {

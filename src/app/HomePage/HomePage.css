@@ -1,155 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
-html,body {
-    margin: 0;
+html,body{
+    margin:0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0e3e0;
-   
+    box-sizing:border-box;
 }
-
-/* Default styles for section containers */
-section {
- 
- height: 100vh;
- border-radius: 5px;
+#section0{
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url(../../assets/imges/background.jpg);
+    height: 100vh;
+    background-position: center;
+    background-attachment: fixed;
+}
+h1{
+    font-family: Lobster Two;
+    font-size: 72px ;
 
 }
-
-/* Specific styles for #section1 */
-#section1 {
- 
-    background-color: #dbc9c5;
-   
+#section1{
+    background-color: #fcfbfb;
+    padding-block: 80px;
 }
-
-/* Specific styles for #section2 */
-#section2 {
-    background-color: #d8ccca;
-    padding-top: 5%;
-}
-
-/* Specific styles for #section3 */
-#section3 {
-  padding-top: 5%;
-    background-color: #f0e3e0;
-}
-
-/* Styles for text and image within sections */
-
 .h2txt {
- font-family: Philosopher;
- color: #42302c;
- font-weight: 600;
- text-shadow: 5px 5px #dbc9c5;
- margin-bottom: 10px;
-}
-
-.ptxt{
- font-family: Philosopher;
- color: #74554d;
- font-size: 18px;
- font-weight: 550;
- line-height: 1.5;
-}
-
-.text-image img {
+    font-family: Philosopher;
+    color: black;
+    font-weight: 600;
+    text-shadow: 1px 1px #aaa;
+    margin-bottom: 10px;
+   }
+   
+   .ptxt{
+    font-family: Philosopher;
+    color:#545657;
+    font-size: 18px;
+    font-weight: 550;
+    line-height: 1.5;
+   }
+   .text-image img {
     width: 80%; 
     display: block;
     transform: translate(30px , 30px);
 }
-
-.author-container {
- display: flex;
- align-items: center;
- margin-bottom: 20px; 
-}
-
-.text-content {
- flex: 1;
- padding: 20px;
- margin-left: 10%;
- margin-top: 5%;
-}
-
-.image-content {
- flex: 1;
- display: flex;
- justify-content: flex-end;
- margin-left: 10%;
- margin-top: 5%;
-}
-
-.intro {
-    height: 100vh;
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-   
-  
-}
-.content {
-    display: flex;
+   .author-container {
     align-items: center;
-    justify-content: space-between;
-    padding-top: 4%;
-}
-
-.text {
-    flex: 1;
-    text-align: left;
-    margin-right: 20px;
-}
-.image {
-    flex: 1;
-    text-align: right;
-}
-
-.image img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 5%;
-    margin-bottom: 20px;
-    margin-right: 16%;
-}
-
-.image p {
-    margin-right: 5%;
-    text-shadow: 2px 2px #dbc9c5;
    
-}
-
-
-
-.intro h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    font-family: Lobster Two;
-    color: #856158;
-    text-shadow: 4px 4px #dbc9c5;
-}
-
-.intro h2 {
-    
-    font-size: 1.8em;
-    color: #856158;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    font-family: Lobster Two;
-}
-
-
-.intro p {
-    font-size: 1.2em;
-    color: #666;
-    margin-bottom: 20px;
-    font-family: Philosopher;
-}
-
-
-
-
-.intro a::hover {
-    color: #42302c;
-    cursor: pointer;
-}
+   }
+   
+   .text-content {
+    padding: 20px;
+    margin-left: 5%;
+    margin-top: 5%;
+   }
+   
+   .image-content {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 10%;
+    margin-top: 5%;
+   }
+   #section3{
+    background-color:#f6f4f2;
+   }   

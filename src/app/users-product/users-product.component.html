@@ -1,4 +1,4 @@
-<div class="container" style="margin-bottom: 4%;">
+<div class="container" style="margin-bottom: 4%; padding-block: 60px;">
     <div class="container text-center mt-5  animate__animated animate__fadeInRight">
       <h2 class="mb-4">Ready for Your Next Book Escape?</h2>
       <p class="lead txt">
@@ -6,13 +6,13 @@
         
       </p>
       <p class="lead txt animate__animated  animate__fadeInBottomLeft ">
-        Have a book to sell or swap? <a [routerLink]="['/userDash']" style="color:#956d63;" >Add your book here</a>.
+        Have a book to sell or swap? <a [routerLink]="['/userDash']" style="color:black;" >Add your book here</a>.
     </p>
     </div>
     
     <div class="row row-cols-1 row-cols-md-3">
-      <div class="col mb-4  animate__animated delay-4s animate__rollIn" *ngFor="let book of books | async">
-        <div class="card h-100" style="background-color: #f2e6e3;">
+      <div class="col mb-4" *ngFor="let book of books | async">
+        <div class="card h-100 animate__animated animate__fadeIn" style="background-color: #f9f8f6;">
           <img [src]="book.photoUrl" class="card-img-top img-fluid" alt="{{ book.title }}" style="height: 300px; object-fit: contain; margin-top: 20px;">
           <div class="card-body d-flex flex-column">
            
@@ -23,7 +23,7 @@
               <div class="mt-auto text-center">
              <!-- Your buttons with heart and cart icons -->
   <!-- Your HTML code using Font Awesome icons -->
-  <button [routerLink]="['/usersBook', book.id]" class="btn btn-outline-light mx-2" style="background-color:#956d63;"> View Details</button>
+  <button [routerLink]="['/usersBook', book.id]" class="btn mx-2" style="background-color:#434240; color:white"> View Details</button>
   
   
   

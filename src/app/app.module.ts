@@ -12,7 +12,7 @@ import { Error404Component } from './error404/error404.component';
 import{HomePageComponent}from './HomePage/HomePage.component';
 import { SignupComponent } from './user/sign-up/sign-up.component';
 import {AngularFireModule } from 'angularfire2';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import{AngularFirestoreModule} from 'angularfire2/firestore';

@@ -18,6 +18,7 @@ export class OrderComponent implements OnInit {
   userOrdersWithProducts: any[] = [];
   showCreditCardForm: boolean = false;
   creditCardForm: FormGroup;
+  paymentCompleted: boolean = false;
 
 
   constructor(
@@ -184,5 +185,12 @@ get cvv() {
 
   removePaidOrders() {
     this.userOrders = this.userOrders.filter(order => !order.paid);
+  }
+  completePayment() {
+    this.paymentCompleted = true;
+  }
+
+  trackOrder() {
+   
   }
 }

@@ -6,27 +6,27 @@
 
 .txt_title{
 
-font-family: 'Lobster Two', cursive;
-color: #644942;
+font-family: 'Lobster Two';
+color: black;
 text-shadow: 4px 4px 4px #aaa;
 font-family: 'Lemonada';
 }
 
 .txt_desc{
     font-family: 'Philosopher';
-    color:#74554d;
-    font-weight:550;
+    color:#545657;
+    font-weight:700;
 
 }
 .txt_auth{
     font-family: 'Philosopher';
     font-weight: bolder;
     font-size:medium;
-    color:#af867d
+    color:#545657
 }
 .price{
     font-family: 'Comic Neue', cursive;
-    color:#644942;
-    font-weight:bolder;
+    color:#545657;
+    font-weight:900;
     font-size:large;
 }

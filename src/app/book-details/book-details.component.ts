@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FirestoreCartService } from 'src/firebaseServices/firbaseCart.service';
 import { FirestoreService } from 'src/firebaseServices/fireStore.service';
 import { UserBookService } from 'src/firebaseServices/userBook.Service';
+import { AuthService } from '../user/AuthenticationService/AuthService';
 
 @Component({
   selector: 'app-book-details',
@@ -18,7 +19,8 @@ export class BookDetailsComponent implements OnInit {
     private firestoreService: FirestoreService,
     private firestoreCartService: FirestoreCartService,
     private snackBar : MatSnackBar,
-    private user: UserBookService
+    private user: UserBookService,
+    private auth:AuthService
   ) {}
 
   ngOnInit(): void {
@@ -42,12 +44,16 @@ export class BookDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const bookId = params.get('id');
       if (bookId) {
-        this.firestoreService.getBookById(bookId).subscribe(book => {
-          this.firestoreCartService.addToCart(bookId)
+        if (this.auth.getCurrentUserID()) { 
+          this.firestoreService.getBookById(bookId).subscribe(book => {
+            this.firestoreCartService.addToCart(bookId);
             const message = 'Book Added successfully!';
-              this.openSnackBar(message);
-           
-        });
+            this.openSnackBar(message);
+          });
+        } else {
+          const loginMessage = 'Please log in to add to cart.';
+          this.openSnackBar(loginMessage);
+        }
       }
     });
   }
@@ -66,7 +72,7 @@ export class BookDetailsComponent implements OnInit {
     this.snackBar.open(message, 'Close', {
       duration: 3000,
       horizontalPosition: 'center',
-      verticalPosition: 'top'
+      verticalPosition: 'bottom'
     })
    
   }

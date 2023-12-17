@@ -1,73 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&family=Fredericka+the+Great&family=Nunito&display=swap');
-body{
-  background-color: #f0e3e0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
 h2{
-    font-family:Philosopher;
-    color:#86351a;
-  
-   font-weight: 900;
-  
+    font-family: Lobster Two;
+    font-size: 50px ;
+    text-shadow: 1px 1px #aaa;
+    margin-bottom: 10px;
 }
 h4{
-  font-family:Philosopher;
-  color: #a84221;
- font-weight: 900;
-
+  font-family: Philosopher;
+    color:#545657;
+    font-weight: 550;
 }
-p{
-font-family: Comic Neue;
-font-weight: 800;
-color: #762e17;
-}
-.book-swapping-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
-    position: relative; 
-  }
-  
-  .book-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .book-image {
-    width: 30%; 
-    height: 25%; 
-    margin-top: 15%;
-    margin-left: 15%;
-  }
-  
 
-  .feature-description {
- 
-    max-width: 40%;
-    padding-left: 5%;
-    padding-top:10%;
-  
-  }
-  
-  .feature-description h3 {
-  
-    font-size: 25px;
-    margin-bottom: 5px;
-    animation: bounceText 1s ;
-  }
-  
-  .feature-description p {
-    font-size: 20px;
-    line-height: 1.4;
-  }
-  
-  @keyframes bounceText {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
-  
+   
+   p{
+    font-family: Philosopher;
+    color:#545657;
+    font-size: 18px;
+    font-weight: 550;
+    line-height: 1.5;
+   }
+   .text-image img {
+    width: 80%; 
+    display: block;
+    padding-block: 40px;
+    
+}
+   .author-container {
+    align-items: center;
+   
+   }
+   
+   .text-content {
+    padding: 20px;
+    margin-left: 5%;
+    margin-top: 5%;
+   }
+   
+   .image-content {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 10%;
+    margin-top: 5%;
+   }
+      

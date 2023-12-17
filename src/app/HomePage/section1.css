@@ -4,8 +4,8 @@ h4,h3,h5{
   
 }
 h3,h4{
-    color:#42302c;
+    color:black;
     font-weight: 600;
-    text-shadow: 3px 3px #dbc9c5;
+    text-shadow: 1px 1px #aaa;
     
 }

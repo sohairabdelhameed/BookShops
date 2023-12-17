@@ -1,60 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Booktopia</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    #typed {
+  font-size: 2.5rem;
+}
+.typed-cursor {
+  font-size: 2.5rem;
+}
+  </style>
 </head>
 <body>
- <div>
-  <section id="section0" class="intro">
-    <div class="content">
-        <div class="text animate__animated animate__backInDown">
-            <h1 class="animate__animated animate__delay-2s animate__flash">Embark on a Literary Adventure at Booktopia!</h1>
-            <p>Immerse Yourself in a World of Books! Explore, Purchase, Sell, and Swap Treasured Reads with Like-minded Bibliophiles.</p>
-            <p>Start Your Booktopia Journey: <span><a class="btn btn-outline-light" style="background-color: #956d63;" [routerLink]="['/books']"> Shop Now</a></span></p>
-            <h2 class="animate__animated animate__delay-2s animate__flash">Transform Your Library: Sell or Swap Your Books Today!</h2>
-            <p>Declutter and Earn: Convert Your Unwanted Books into Cash or Exchange Your Beloved Reads for Fresh Adventures!</p>
-            <p>Connect and Exchange with Booktopia Readers Now! <span><a class="btn btn-outline-light" style="background-color: #956d63;" [routerLink]="['/usersBook']"> Explore Users' Books</a></span></p>
-        </div>
-        <div class="image animate__animated animate__fadeInBottomRight">
-            <img src="../../assets/imges/test1.png" alt="Booktopia Logo">
-            <p class="animate__animated animate__delay-1s animate__rollIn" style=" font-family: Lobster Two; font-size: 25px; color:#956d63;">"A book is a dream that you hold in your hands"</p>
-        </div>
-    </div>
-</section>
 
-
-
-
-
-    <section id="section1" class="section">
+<section id="section0">
+<div class="container position-absolute top-50 start-50 translate-middle text-white fw-semibold text-center">
+        <h1> Transform Your Library:</h1>
+          <span id="typed"></span>
+      </div>
+     </section>
+ 
+     <section id="section1">
       <section-one></section-one>
     </section>
-
-    <section id="section2" class="section">
-      <div class="author-container" *ngFor="let author of author$ | async;">
-        <div class="text-content">
-          <h2 class="h2txt animate__animated animate__backInLeft">{{ author.name }} {{ author.date }}</h2>
+    <section id="section2">
+     <div class="container">
+      <div class="author-container row" *ngFor="let author of author$ | async;">
+        <div class="text-content col-lg-6 col-12">
+          <h2 class="h2txt animate__animated wow animate__backInLeft">{{ author.name }} {{ author.date }}</h2>
           <p class="ptxt animate__animated animate__fadeInRight">{{ author.about }}</p>
           <p class="ptxt animate__animated animate__fadeInRight">{{ author.famousLine }}</p>
         </div>
-        <div class="image-content">
+        <div class="image-content col-lg-4 col-12 offset-lg-2">
           <div class="text-image pattern-diagonal-lines-sm" >
             <img [src]="author.photoUrl" alt="{{ author.name }}" class="author-image animate__animated animate__fadeInLeftBig">
           </div>
         </div>
       </div>
+     </div>
     </section>
-    
-    
     <section id="section3" class="section">
       <section-two></section-two>
   
     </section>
- 
- </div>
- 
 </body>
-<footer> 
-  <app-footer></app-footer>
-</footer>
+
 </html>

@@ -1,4 +1,5 @@
-
+<div style="padding-block: 80px;">
+  
  
  <div class="container mt-4">
   <div *ngIf="userAddress" class="user-address">
@@ -36,6 +37,12 @@
      <h5>Select Payment Method:</h5>
      <button class="btn" style="background-color:#99806f; color:white" (click)="payOnDelivery()">Pay on Delivery</button>
      <button class="btn " style="background-color:#99806f; color:white" (click)="opencreditcard()">Pay with Credit Card</button>
+
+  </div>
+  <div *ngIf="allOrdersPaid()" class="track-order">
+    <h2>Track Your Order</h2>
+    <button class="btn btn-secondary" [routerLink]="['/track']">Track Order</button>
+    <!-- You can adjust the button style and functionality as needed -->
   </div>
  
   <div *ngIf="showCreditCardForm" class="credit-card-form">
@@ -74,3 +81,4 @@
   
  </div>
  <app-footer></app-footer>
+</div>

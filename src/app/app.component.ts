@@ -31,22 +31,23 @@ export class AppComponent implements OnInit{
   constructor() { }
 
   ngOnInit(): void {
-    // Get the body element
-    const body = document.body;
+  //   // Get the body element
+  //   const body = document.body;
 
-    // Listen to the scroll event
-    window.addEventListener('scroll', () => {
-      // Calculate the total height of the content including the scrolled area
-      const totalHeight = document.documentElement.scrollHeight;
+  //   // Listen to the scroll event
+  //   window.addEventListener('scroll', () => {
+  //     // Calculate the total height of the content including the scrolled area
+  //     const totalHeight = document.documentElement.scrollHeight;
 
-      // Calculate how much the user has scrolled from the top
-      const scrolled = window.scrollY + window.innerHeight;
+  //     // Calculate how much the user has scrolled from the top
+  //     const scrolled = window.scrollY + window.innerHeight;
 
-      // Update the body height based on the scroll position
-      if (scrolled >= totalHeight) {
-        // Increase the body height when scrolled to the bottom
-        body.style.height = `${scrolled}px`;
-      }
-    });
+  //     // Update the body height based on the scroll position
+  //     if (scrolled >= totalHeight) {
+  //       // Increase the body height when scrolled to the bottom
+  //       body.style.height = `${scrolled}px`;
+  //     }
+  //   });
+  // }
   }
 }

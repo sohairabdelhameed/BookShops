@@ -3,15 +3,15 @@
 
 .txt_title{
 
-font-family: 'Lobster Two', cursive;
-color: #644942;
+font-family: 'Lobster Two';
+color: black;
 text-shadow: 4px 4px 4px #aaa;
 font-family: 'Lemonada';
 }
 
 .txt_desc{
     font-family: 'Philosopher';
-    color:#74554d;
+    color:#545657;
     font-weight:550;
 
 }
@@ -19,11 +19,11 @@ font-family: 'Lemonada';
     font-family: 'Philosopher';
     font-weight: bolder;
     font-size:medium;
-    color:#af867d
+    color:black
 }
 .price{
     font-family: 'Comic Neue';
-    color:#644942;
+    color:#545657;
     font-weight:bolder;
     font-size:large;
 }
@@ -32,26 +32,14 @@ font-family: 'Comic Neue' ;
 
 
 }
-body {
-    background-color: #f2e6e3;
- }
 
- .container {
-    background-color: #f2e6e3;
- }
 
  .card {
     border: none;
-    background-color: #f2e6e3;
+   
  }
 
- .card-title {
-    color: #644942;
- }
-
- .card-text {
-    color: #644942;
- }
+ 
 
 
  .btn-outline-dark {

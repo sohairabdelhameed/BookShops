@@ -3,16 +3,19 @@
 
 /* Apply the font-family to the paragraph */
 .txt{
-    font-family: 'Comic Neue', cursive;
-    color:#b9684d;
-    font-weight:600;
+    font-family: 'Comic Neue';
+    color:#545657;
+    font-weight:700;
 
 }
 
 
 h2{
-    color: #b15537;
-    font-family:'Lobster Two' , serif;
+    color: black;
+    font-family:'Lobster Two';
     text-shadow: 4px 4px 4px #aaa;
 }
 
+a{
+    text-shadow: 4px 4px 4px #aaa;
+}

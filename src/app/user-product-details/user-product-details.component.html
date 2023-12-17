@@ -1,7 +1,7 @@
-<div class="container" style="margin-top: 5%; margin-bottom: 4%;">
+<div class="container" style="margin-top: 10%; margin-bottom: 4%; padding-block: 60px; background-color:#f9f8f6;">
     <div class="row">
       <div class="col-md-6">
-        <div class="card mb-3" style="background-color: #f2e6e3;">
+        <div class="card mb-3" style="background-color:#f9f8f6;">
           <div class="card-body">
           
             <div class="d-flex align-items-center mb-3">
@@ -22,10 +22,10 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="card mb-3 shadow-sm" style="background-color: #f2e6e3; margin-top: 15%;">
+        <div class="card mb-3 shadow-sm" style="background-color:#f3f1ee; margin-top: 15%;">
           <div class="card-body">
             <div *ngIf="userDetails && userDetails.address">
-              <h3 class="txt_user" style="color:#4c3a2d; font-weight: 800;">{{ userDetails.address.fullName }} <span ><i class="fas fa-location-pin-lock"></i></span></h3>
+              <h3 class="txt_user" style="color:black; font-weight: 800;">{{ userDetails.address.fullName }} <span ><i class="fas fa-location-pin-lock"></i></span></h3>
               <div>
                 <p><b>Country:</b> {{ userDetails.address.country }}</p>
                 <p><b>City:</b> {{ userDetails.address.city }}</p>

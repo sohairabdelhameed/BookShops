@@ -104,7 +104,7 @@ export class ProductComponent implements OnInit {
     this.snackBar.open(message, 'Close', {
       duration: 3000,
       horizontalPosition: 'center',
-      verticalPosition: 'top'
+      verticalPosition: 'bottom'
     })
    
   }
