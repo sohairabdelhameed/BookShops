@@ -4,6 +4,8 @@ import { UserBookService } from 'src/firebaseServices/userBook.Service';
 import { finalize } from 'rxjs/operators';
 import { AuthService } from '../AuthenticationService/AuthService';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-dashboard',
@@ -28,7 +30,8 @@ export class UserDashboardComponent implements OnInit {
     private authService: AuthService,
     private userService: UserBookService,
     private storage: AngularFireStorage,
-    private snackBar : MatSnackBar
+    private snackBar : MatSnackBar,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -75,38 +78,55 @@ export class UserDashboardComponent implements OnInit {
     const username = this.authService.getCurrentUsername();
   
     if (userID && username) {
-      if (this.bookData.photoUrl) { // Check if an image is uploaded
-        this.bookData.userId = userID;
-        this.bookData.username = username;
-        this.bookData.choice = this.bookData.choice === 'swap' ? 'swap' : 'sell';
-        this.userService.addBook(this.bookData)
-          .then((docRef) => {
-            console.log('Book added successfully with ID:', docRef.id);
-            this.bookData = {
-              title: '',
-              author: '',
-              choice: '', 
-              price: null, 
-              title_of_exchange_book:'',
-              author_of_exchange_book:'',
-              photoUrl: '',
-              userId: ''
-            };
-          
-          })
-          .catch(error => {
-            console.error('Error adding book: ', error);
-          });
-      } else {
-        const message = 'Please Upload the image of the Book';
-    this.openSnackBar(message);
-        console.error('Please upload an image before submitting the form.');
-
-      }
+      this.authService.getUserAddress(userID).subscribe(addressData => {
+        if (addressData && addressData.address) {
+          if (this.bookData.photoUrl) { // Check if an image is uploaded
+            this.bookData.userId = userID;
+            this.bookData.username = username;
+            this.bookData.choice = this.bookData.choice === 'swap' ? 'swap' : 'sell';
+            this.userService.addBook(this.bookData)
+              .then((docRef) => {
+                console.log('Book added successfully with ID:', docRef.id);
+                this.bookData = {
+                  title: '',
+                  author: '',
+                  choice: '',
+                  price: null,
+                  title_of_exchange_book: '',
+                  author_of_exchange_book: '',
+                  photoUrl: '',
+                  userId: ''
+                };
+              })
+              .catch(error => {
+                console.error('Error adding book: ', error);
+                const errorMessage = 'An error occurred while adding the book.';
+                this.openSnackBar(errorMessage);
+              });
+          } else {
+            const message = 'Please Upload the image of the Book';
+            this.openSnackBar(message);
+            console.error('Please upload an image before submitting the form.');
+          }
+        } else {
+          const message = 'Please add your address before adding a book.';
+          this.openSnackBar(message);
+          this.router.navigate(['/address']); // Redirect to add address page
+        }
+      }, error => {
+        console.error('Error fetching user address: ', error);
+        const errorMessage = 'An error occurred while fetching user address.';
+        this.openSnackBar(errorMessage);
+      });
     } else {
       console.error('User not logged in or username not available.');
+      const errorMessage = 'Please log in to add a book.';
+      this.openSnackBar(errorMessage);
+      this.router.navigate(['/signIn']); // Redirect to login page
     }
   }
+  
+  
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Close', {
       duration: 3000,
