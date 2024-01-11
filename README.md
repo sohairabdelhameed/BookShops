@@ -1,11 +1,8 @@
-
 ### Booktopia - Your Online Book Bazaar 📚🌐
-
 
 Welcome to Booktopia, your go-to destination for buying, selling, and exchanging books! This Angular app is designed to provide users with a seamless experience for all things related to books. Whether you're looking to purchase a new book, sell your own, or engage in book exchanges with fellow users, Booktopia has got you covered.
 
 Explore my Booktopia website 🌐 [here](https://bookshop-a4062.web.app/HomePage).
-
 
 ## App Features
 
