@@ -78,4 +78,16 @@ getAddressArray(addresses: any): any[] {
       verticalPosition: 'top'
     });
   }
+  copyPhoneNumber(phoneNumber) {
+    const tempInput = document.createElement('input');
+    tempInput.value = phoneNumber;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    alert('Phone number copied: ' + phoneNumber);
+  }
+ 
+  
 }
+ 

@@ -1,50 +1,51 @@
-<nav id="navbar" class="navbar navbar-expand-lg fixed-top" style="background-color: #fcfbfb;">
+<!-- Update the navbar component with proper Bootstrap and Angular integration -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
     <a class="navbar-brand" href="#">
       <img src="../assets/imges/test1.png" alt="Bootstrap" width="30" height="30">
       Booktopia
     </a>
 
+    <!-- Toggler button -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Navbar content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/feature']">Swap Or Sell</a>
+          <a class="nav-link" href="/feature">Swap Or Sell</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/books']">Books</a>
+          <a class="nav-link" href="/books">Books</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/usersBook']">User Utopia Books</a>
+          <a class="nav-link" href="/usersBook">User Utopia Books</a>
         </li>
       </ul>
-
-      <div *ngIf="!username">
+      <div *ngIf="!username; else loggedInUser">
         <!-- Display Login link if the user is not logged in -->
-        <ul class="navbar-nav m-1">
+        <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/signIn']">Login</a>
+            <a class="nav-link" href="/signIn">Login</a>
           </li>
         </ul>
       </div>
-      <div *ngIf="username">
+      <ng-template #loggedInUser>
         <!-- Display username if the user is logged in -->
-        <ul class="navbar-nav m-1">
+        <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/profile']">{{ username }}</a>
+            <a class="nav-link" href="/profile">{{ username }}</a>
           </li>
         </ul>
-      </div>
-      <ul class="navbar-nav m-2">
+      </ng-template>
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/fav']"><i class="fas fa-heart" style="color:#a84221"></i>
-          </a>
+          <a class="nav-link" href="/fav"><i class="fas fa-heart" style="color:#a84221"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/cart']"><i class="fas fa-shopping-cart" style="color:#a84221"></i>
-          </a>
+          <a class="nav-link" href="/cart"><i class="fas fa-shopping-cart" style="color:#a84221"></i></a>
         </li>
       </ul>
     </div>

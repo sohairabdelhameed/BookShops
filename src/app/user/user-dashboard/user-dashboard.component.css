@@ -1,25 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster+Two');
 @import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
-body {
+html,body {
     background-color:#f0e3e0;
     margin: 0;
     padding: 0;
-  height: 100%;
+  min-height: 100vh;
 
 }
 
 
     h3 {
-      color: #333;
+      color: black;
       text-align: center;
       font-family: Lobster Two;
-      color: #644942;
+      color: black;
 text-shadow: 4px 4px 4px #aaa;
     
     }
 
     p {
-      color: #956d63;
+      color: rgb(84, 81, 81);
       text-align: center;
     font-family: Philosopher;
     font-size: 23px;
